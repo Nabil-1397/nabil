@@ -1,0 +1,3454 @@
+<title>Delta Civilisation Dossier</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,7..72,400;0,7..72,600;0,7..72,700;1,7..72,400&family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Noto+Serif+Bengali:wght@400;600&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+/* Layout: sticky phase index on the left, one reading column with wide tables on the right; stacks on phones. */
+:root{
+  --bg:#f2f4f1; --surface:#ffffff; --fg:#17201c; --muted:#56635c; --rule:#d5ddd7;
+  --accent:#0d5c46; --accent-soft:#e1efe8; --silt:#8a6a2f;
+  --fact:#24557a; --fact-bg:#e3edf5; --interp:#7a5410; --interp-bg:#f6ecd7; --norm:#6b3a7a; --norm-bg:#f0e5f3;
+  --verify:#a8352a; --verify-bg:#f8e4e1;
+  --strong:#0d5c46; --moderate:#8a6a2f; --weak:#a8352a;
+  --f-display:"Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --f-body:"Literata", "Noto Serif Bengali", Georgia, serif;
+  --f-mono:"IBM Plex Mono", ui-monospace, Menlo, monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#111714; --surface:#18201c; --fg:#e2e9e4; --muted:#9aa89f; --rule:#2c3832;
+  --accent:#5cc49f; --accent-soft:#1d3229; --silt:#d1ad69;
+  --fact:#8fbde3; --fact-bg:#1c2b38; --interp:#e3bb6c; --interp-bg:#33291a; --norm:#d3a4e2; --norm-bg:#2f2236;
+  --verify:#f08a7e; --verify-bg:#3a1f1c; --strong:#5cc49f; --moderate:#d1ad69; --weak:#f08a7e; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#111714; --surface:#18201c; --fg:#e2e9e4; --muted:#9aa89f; --rule:#2c3832;
+  --accent:#5cc49f; --accent-soft:#1d3229; --silt:#d1ad69;
+  --fact:#8fbde3; --fact-bg:#1c2b38; --interp:#e3bb6c; --interp-bg:#33291a; --norm:#d3a4e2; --norm-bg:#2f2236;
+  --verify:#f08a7e; --verify-bg:#3a1f1c; --strong:#5cc49f; --moderate:#d1ad69; --weak:#f08a7e; color-scheme:dark}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}}
+body{background:var(--bg);color:var(--fg);font-family:var(--f-body);font-size:16.5px;line-height:1.62;
+  padding-left:max(16px, env(safe-area-inset-left, 0px));padding-right:max(16px, env(safe-area-inset-right, 0px))}
+a{color:var(--accent)} a:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:2px}
+
+.masthead{max-width:1240px;margin:0 auto;padding-block:48px 28px;border-bottom:1px solid var(--rule)}
+.eyebrow{font-family:var(--f-mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--silt)}
+.masthead h1{font-family:var(--f-display);font-weight:700;font-size:clamp(30px,5vw,54px);line-height:1.05;letter-spacing:-.02em;margin:10px 0 14px;text-wrap:balance;max-width:20ch}
+.masthead h1 .bn{display:block;font-family:"Noto Serif Bengali",var(--f-body);font-weight:600;font-size:.5em;color:var(--accent);letter-spacing:0;margin-top:8px}
+.deck{max-width:68ch;color:var(--muted);font-size:17.5px;margin:0}
+.legend{display:flex;flex-wrap:wrap;gap:8px 18px;margin-top:22px;font-size:14px;color:var(--muted);align-items:center}
+.legend span.item{display:inline-flex;gap:6px;align-items:center}
+
+.shell{max-width:1240px;margin:0 auto;display:grid;grid-template-columns:250px minmax(0,1fr);gap:48px;padding-block:28px 80px}
+nav.toc{position:sticky;top:calc(env(safe-area-inset-top, 0px) + 16px);align-self:start;max-height:calc(100vh - 32px);overflow:auto;font-family:var(--f-display);font-size:14px}
+nav.toc .lbl{font-family:var(--f-mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:10px}
+nav.toc ol{list-style:none;margin:0;padding:0;display:grid;gap:2px}
+nav.toc a{display:grid;grid-template-columns:22px 1fr;gap:6px;padding:6px 8px;border-radius:6px;text-decoration:none;color:var(--fg);line-height:1.3}
+nav.toc a:hover{background:var(--accent-soft)}
+nav.toc a.on{background:var(--accent-soft);color:var(--accent);font-weight:700}
+nav.toc .n{font-family:var(--f-mono);color:var(--silt);font-size:12px;padding-top:1px}
+
+main{min-width:0}
+main>p, main>ul, main>ol, main>blockquote, main>h3, main>h4{max-width:72ch}
+h2{font-family:var(--f-display);font-weight:700;font-size:clamp(24px,3vw,32px);line-height:1.15;letter-spacing:-.01em;margin:64px 0 18px;padding-top:18px;border-top:2px solid var(--fg);text-wrap:balance;scroll-margin-top:16px}
+main>h2:first-child{margin-top:0}
+h2 .phase-no{display:block;font-family:var(--f-mono);font-size:12px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--silt);margin-bottom:6px}
+h3{font-family:var(--f-display);font-weight:700;font-size:20px;margin:36px 0 10px;text-wrap:balance;scroll-margin-top:16px}
+h4{font-family:var(--f-display);font-weight:500;font-size:17px;margin:28px 0 8px;color:var(--accent)}
+hr{border:0;border-top:1px solid var(--rule);margin:40px 0}
+li{margin:4px 0}
+blockquote{margin:20px 0;padding:14px 18px;background:var(--surface);border:1px solid var(--rule);border-left:4px solid var(--accent);border-radius:0 8px 8px 0}
+blockquote p{margin:6px 0}
+code{font-family:var(--f-mono);font-size:.88em;background:var(--accent-soft);padding:1px 5px;border-radius:4px}
+
+.tbl{overflow-x:auto;margin:18px 0 26px;border:1px solid var(--rule);border-radius:8px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;font-size:14.5px;line-height:1.5;min-width:640px}
+th{font-family:var(--f-display);font-weight:700;text-align:left;font-size:13.5px;background:var(--accent-soft);color:var(--fg);padding:10px 12px;border-bottom:1px solid var(--rule);vertical-align:bottom}
+td{padding:10px 12px;border-bottom:1px solid var(--rule);vertical-align:top}
+tr:last-child td{border-bottom:0}
+td:first-child{font-weight:600}
+td{font-variant-numeric:tabular-nums}
+
+.tag{display:inline-block;font-family:var(--f-mono);font-size:11px;font-weight:500;letter-spacing:.02em;line-height:1.35;padding:1px 6px;border-radius:4px;vertical-align:1px;white-space:normal}
+.tag-fact{color:var(--fact);background:var(--fact-bg)}
+.tag-interp{color:var(--interp);background:var(--interp-bg)}
+.tag-norm{color:var(--norm);background:var(--norm-bg)}
+.verify{display:inline-block;font-family:var(--f-mono);font-size:10.5px;font-weight:500;color:var(--verify);background:var(--verify-bg);padding:0 5px;border-radius:4px;vertical-align:1px}
+.grade{font-family:var(--f-display)}
+.grade-strong{color:var(--strong)} .grade-moderate{color:var(--moderate)} .grade-weak{color:var(--weak)}
+.lvl{font-family:var(--f-mono);font-size:12px;font-weight:500;padding:1px 6px;border-radius:4px;white-space:nowrap}
+.lvl-high{color:var(--verify);background:var(--verify-bg)} .lvl-medium{color:var(--interp);background:var(--interp-bg)} .lvl-low{color:var(--strong);background:var(--accent-soft)}
+
+footer{max-width:1240px;margin:0 auto;padding-block:24px 48px;border-top:1px solid var(--rule);color:var(--muted);font-size:14px}
+
+@media (max-width: 900px){
+  .shell{grid-template-columns:minmax(0,1fr);gap:20px}
+  nav.toc{position:static;max-height:none;background:var(--surface);border:1px solid var(--rule);border-radius:8px;padding:12px}
+  nav.toc ol{grid-template-columns:repeat(auto-fill,minmax(200px,1fr))}
+  .masthead{padding-block:28px 20px}
+}
+</style>
+
+<header class="masthead">
+  <div class="eyebrow">Study circle dossier · Bengal delta · November 2026</div>
+  <h1>Bangla Muslim Civilisational Nationalism<span class="bn">বাংলা মুসলিম সভ্যতাভিত্তিক জাতীয়তাবাদ</span></h1>
+  <p class="deck">Should Bangladesh understand itself as a civilizational state rooted in the Bengali-Muslim synthesis of the delta? Six specialists work through eight phases, from the concept's genealogy to a risk register, and leave their disagreements visible.</p>
+  <div class="legend">
+    <span class="item"><span class="tag tag-fact">FACT</span> verifiable</span>
+    <span class="item"><span class="tag tag-interp">INTERP</span> whose interpretation</span>
+    <span class="item"><span class="tag tag-norm">NORM</span> normative argument</span>
+    <span class="item"><span class="verify">VERIFY</span> check source before public use</span>
+    <span class="item">Evidence: <strong class="grade grade-strong">Strong</strong> · <strong class="grade grade-moderate">Moderate</strong> · <strong class="grade grade-weak">Weak</strong></span>
+  </div>
+</header>
+
+<div class="shell">
+  <nav class="toc" aria-label="Contents">
+    <div class="lbl">Contents</div>
+    <ol><li><a href="#how-to-read-this-dossier"><span class="n">·</span><span>How to read this dossier</span></a></li>
+<li><a href="#phase-1-genealogy-of-the-concept-civilizational-state"><span class="n">1</span><span>Genealogy of the concept "civilizational state"</span></a></li>
+<li><a href="#phase-2-definitions-and-distinctions"><span class="n">2</span><span>Definitions and
+distinctions</span></a></li>
+<li><a href="#phase-3-islamic-intellectual-resources"><span class="n">3</span><span>Islamic
+intellectual resources</span></a></li>
+<li><a href="#phase-4-comparative-case-studies"><span class="n">4</span><span>Comparative case
+studies</span></a></li>
+<li><a href="#phase-5-applying-the-concept-to-bengal-and-bangladesh"><span class="n">5</span><span>Applying the concept to Bengal and Bangladesh</span></a></li>
+<li><a href="#phase-6-steelmanning-the-critics"><span class="n">6</span><span>Steelmanning the
+critics</span></a></li>
+<li><a href="#phase-7-policy-translation"><span class="n">7</span><span>Policy translation</span></a></li>
+<li><a href="#phase-8-risk-register"><span class="n">8</span><span>Risk register</span></a></li>
+<li><a href="#concluding-materials"><span class="n">·</span><span>Concluding materials</span></a></li></ol>
+  </nav>
+  <main>
+<h2 id="how-to-read-this-dossier">How to read this dossier</h2>
+<p><strong>Panel.</strong> Six voices debate throughout. Where they
+disagree, the disagreement is left open.</p>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Code</th>
+<th>Panellist</th>
+<th>Default lens</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>PT</strong></td>
+<td>Political theorist of nationalism and the state</td>
+<td>Concepts, legitimacy, boundaries</td>
+</tr>
+<tr class="even">
+<td><strong>HB</strong></td>
+<td>Historian of Bengal and South Asian Islam (1204 to the present)</td>
+<td>Archives, periodisation, against anachronism</td>
+</tr>
+<tr class="odd">
+<td><strong>CP</strong></td>
+<td>Comparative politics scholar (China, India, Russia, Turkey, Iran,
+Malaysia, Indonesia)</td>
+<td>What happens when the idea becomes a regime</td>
+</tr>
+<tr class="even">
+<td><strong>IT</strong></td>
+<td>Scholar of classical and modern Islamic political thought</td>
+<td>Ummah, qawm, siyasa, shari'a</td>
+</tr>
+<tr class="odd">
+<td><strong>DE</strong></td>
+<td>Development economist (developmental states)</td>
+<td>Growth, industrial policy, state capacity</td>
+</tr>
+<tr class="even">
+<td><strong>CL</strong></td>
+<td>Constitutional lawyer (citizenship and minority rights)</td>
+<td>Text, justiciability, safeguards</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Claim labels.</strong></p>
+<ul>
+<li><span class="tag tag-fact">FACT</span>: verifiable event, text, date or
+statistic.</li>
+<li><span class="tag tag-interp">INTERP: whose</span>: an interpretation, with the
+scholar or panellist who holds it.</li>
+<li><span class="tag tag-norm">NORM</span>: a normative argument about what
+<em>ought</em> to be done.</li>
+</ul>
+<p><strong>Evidence grades</strong> for key conclusions:
+<strong class="grade grade-strong">Strong</strong> (multiple independent sources, little scholarly
+dispute), <strong class="grade grade-moderate">Moderate</strong> (good evidence, live dispute),
+<strong class="grade grade-weak">Weak</strong> (plausible, thinly evidenced or speculative).</p>
+<p><strong>Citations.</strong> Only real works are cited. Where a page
+number, edition or exact figure could not be confirmed from memory, it
+is marked <span class="verify">VERIFY</span>. Statistical figures are rounded and
+should be refreshed from the World Bank <em>World Development
+Indicators</em> (WDI), UNDP <em>Human Development Report</em> (HDR) and
+Bangladesh Bureau of Statistics (BBS) before any public use. Facts about
+events after mid-2025 are marked <span class="verify">VERIFY</span> because they move fast.</p>
+<p><strong>Two corrections to the brief, up front.</strong></p>
+<ol type="1">
+<li>Richard Eaton's book is <em>The Rise of Islam and the Bengal
+Frontier, 1204–1760</em> (University of California Press, 1993), not
+"Islam on the Bengal frontier".</li>
+<li>The 1940 Lahore Resolution's plural "Independent States" is
+accurate, but it was amended to the singular "a sovereign independent
+State" at the Delhi Muslim League Legislators' Convention of April 1946.
+Both texts matter (see Phase 5).</li>
+</ol>
+<hr />
+<h2 id="phase-1-genealogy-of-the-concept-civilizational-state"><span class="phase-no">Phase 1</span>Genealogy of the concept "civilizational state"</h2>
+<h3 id="11-overview">1.1 Overview</h3>
+<p><span class="tag tag-interp">INTERP: PT</span> The term has three lives. (1) A
+<strong>descriptive-sinological</strong> life (Pye, Tu): China is "a
+civilization pretending to be a state", meaning the modern Westphalian
+state is an awkward container for a much older cultural order. (2) A
+<strong>legitimating</strong> life (Jacques, Zhang): the civilizational
+state is a superior or at least equal alternative to the Western
+nation-state, and justifies a distinct political model. (3) A
+<strong>diagnostic-critical</strong> life (Coker, Rachman, Maçães,
+Acharya, Therborn): the term is now a rhetorical weapon used by Beijing,
+Moscow, New Delhi, Ankara and others to reject liberal universalism and
+to justify strong leaders, minority subordination and spheres of
+influence.</p>
+<p><strong>Evidence grade for this three-phase reading:
+Moderate.</strong> The periodisation is widely used in the secondary
+literature, but the boundaries between phases are blurry (Jacques is
+also partly descriptive).</p>
+<h3 id="12-thinker-by-thinker-table">1.2 Thinker-by-thinker table</h3>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Thinker</th>
+<th>Key text(s)</th>
+<th>Core claim</th>
+<th>Blind spots (panel critique)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Lucian Pye</strong> (1990)</td>
+<td>"China: Erratic State, Frustrated Society", <em>Foreign Affairs</em>
+69(4), Fall 1990, pp. 56–74</td>
+<td><span class="tag tag-fact">FACT</span> Contains the line that China is "a
+civilization pretending to be a state". <span class="tag tag-interp">INTERP: Pye</span>
+China's political problems come from forcing a vast civilizational order
+into the narrow frame of the modern nation-state; this produces erratic,
+authoritarian governance.</td>
+<td><span class="tag tag-interp">INTERP: CP</span> Pye meant it as a <em>diagnosis of
+dysfunction</em>, not a compliment. Later users flipped its valence.
+<span class="tag tag-interp">INTERP: HB</span> Culturalist: underplays contingency,
+class, and institutions. Pye's wider "political culture" approach has
+been criticised as essentialist.</td>
+</tr>
+<tr class="even">
+<td><strong>Tu Weiming</strong> (1991)</td>
+<td>"Cultural China: The Periphery as the Center", <em>Daedalus</em>
+120(2), Spring 1991, pp. 1–32</td>
+<td><span class="tag tag-interp">INTERP: Tu</span> "Cultural China" is wider than the
+PRC: it spans Taiwan, Hong Kong, Singapore, the diaspora and non-Chinese
+scholars of Chinese culture. Creativity may come from the periphery.
+Confucian humanism can be a resource for modernity.</td>
+<td><span class="tag tag-interp">INTERP: PT</span> Actually <em>decouples</em>
+civilization from the state, which cuts against later Beijing-centric
+uses. Elite-textual (Confucian canon); thin on popular religion, ethnic
+minorities (Tibetans, Uyghurs) and gender. Valuable for Bangladesh as a
+model of a civilization larger than a state (Bengal across the border;
+diaspora).</td>
+</tr>
+<tr class="odd">
+<td><strong>Martin Jacques</strong> (2009)</td>
+<td><em>When China Rules the World: The End of the Western World and the
+Birth of a New Global Order</em> (Allen Lane, 2009; 2nd expanded ed.
+Penguin, 2012). Chapter on China as a "civilization-state" <span class="verify">VERIFY
+chapter number and pages</span></td>
+<td><span class="tag tag-interp">INTERP: Jacques</span> China is a civilization-state,
+not a nation-state. Its core features: unity as the supreme political
+value, a state seen as the guardian of civilization (not a rival of
+society), a "Han" racial self-understanding, and a tributary-system
+memory in foreign relations. Modernity will be plural, not Western.</td>
+<td><span class="tag tag-interp">INTERP: CP</span> Takes official self-description at
+face value; minimises the CCP's Leninist, and therefore modern-European,
+institutional core. <span class="tag tag-interp">INTERP: CL</span> Treats the Han
+ethno-racial identity it describes as natural rather than as a problem
+for 125 million+ non-Han citizens. <span class="tag tag-interp">INTERP: DE</span>
+Attributes growth to civilization rather than policy (land reform,
+export processing zones, FDI, the post-1978 reforms) that other cultures
+also used.</td>
+</tr>
+<tr class="even">
+<td><strong>Zhang Weiwei</strong> (2012)</td>
+<td><em>The China Wave: Rise of a Civilizational State</em> (World
+Century Publishing, 2012)</td>
+<td><span class="tag tag-interp">INTERP: Zhang</span> China is the only "civilizational
+state" to survive as a continuous polity: "a fusion of the world's
+longest continuous civilization with a huge modern state". He lists
+"four supers" (super-large population, territory, history, culture) and
+"four uniques" (language, politics, society, economy). Western electoral
+democracy does not fit it; meritocratic "selection plus election"
+does.</td>
+<td><span class="tag tag-interp">INTERP: PT</span> Openly normative and close to state
+discourse; the argument is circular (China is unique, so Western
+standards don't apply, so China is unique). <span class="tag tag-interp">INTERP:
+CL</span> No account of how individuals or minorities can contest
+state power. <span class="tag tag-interp">INTERP: CP</span> Taiwan, a Chinese society
+with competitive democracy, is a standing counter-example to "Chinese
+culture requires one-party rule".</td>
+</tr>
+<tr class="odd">
+<td><strong>Samuel P. Huntington</strong> ("core states")</td>
+<td>"The Clash of Civilizations?", <em>Foreign Affairs</em> 72(3),
+Summer 1993, pp. 22–49; <em>The Clash of Civilizations and the Remaking
+of World Order</em> (Simon &amp; Schuster, 1996), ch. 7, "Core States,
+Concentric Circles, and Civilizational Order" <span class="verify">VERIFY pages, approx. pp.
+155–179</span></td>
+<td><span class="tag tag-interp">INTERP: Huntington</span> After the Cold War, the main
+lines of conflict will be between civilizations. Order within each
+civilization comes from a "core state" (China for Sinic, Russia for
+Orthodox, India for Hindu). <span class="tag tag-fact">FACT</span> He argues Islam
+<em>lacks</em> a core state, which he treats as a source of instability;
+he names Indonesia, Egypt, Iran, Pakistan, Saudi Arabia and Turkey as
+candidates, each with disqualifications.</td>
+<td><span class="tag tag-interp">INTERP: HB</span> Treats civilizations as bounded,
+internally homogeneous blocs; Bengal is exactly the kind of frontier
+zone his map cannot see. <span class="tag tag-interp">INTERP: IT</span> Essentialises
+Islam ("Islam has bloody borders"). <span class="tag tag-interp">INTERP: CP</span>
+Empirical tests have found that intra-civilizational conflicts have
+outnumbered inter-civilizational ones (e.g., Errol Henderson and Richard
+Tucker, "Clear and Present Strangers", <em>International Studies
+Quarterly</em> 45(2), 2001, pp. 317–338 <span class="verify">VERIFY</span>).
+<strong>Relevance:</strong> Bangladesh is a large Muslim-majority state
+that is in <em>no one's</em> core.</td>
+</tr>
+<tr class="even">
+<td><strong>Christopher Coker</strong> (2019)</td>
+<td><em>The Rise of the Civilizational State</em> (Polity, 2019)</td>
+<td><span class="tag tag-interp">INTERP: Coker</span> China and Russia (and others) are
+now mobilising civilizational narratives against the liberal
+universalism of the West. This is partly a reaction to the West's own
+exhaustion. The West has stopped being a "civilization" with a story
+about itself and become merely a set of procedures.</td>
+<td><span class="tag tag-interp">INTERP: PT</span> Strong on the rhetoric of states,
+weaker on internal social reality. Does not systematically examine
+whether the claims are true; focuses on their effects. Western-centred:
+the West's crisis is the hinge of the argument.</td>
+</tr>
+<tr class="odd">
+<td><strong>Gideon Rachman</strong></td>
+<td>"China, India and the rise of the 'civilisation state'",
+<em>Financial Times</em>, 4 March 2019 <span class="verify">VERIFY exact date</span>; <em>The Age
+of the Strongman</em> (Bodley Head, 2022)</td>
+<td><span class="tag tag-interp">INTERP: Rachman</span> Civilizational-state rhetoric in
+China, India, Russia, Turkey and Hungary is a strongman tool: it
+justifies rejecting liberal norms as "Western", centralising power in
+one leader and redefining the nation around a majority culture.</td>
+<td><span class="tag tag-interp">INTERP: CP</span> Journalistic and comparative; good at
+patterns, light on causal tests. <span class="tag tag-interp">INTERP: IT</span> Tends to
+lump very different traditions together. Still a valuable warning list
+for Phase 8.</td>
+</tr>
+<tr class="even">
+<td><strong>Bruno Maçães</strong> (2020)</td>
+<td>"The Attack of the Civilization-State", <em>Noema</em>/<em>Foreign
+Policy</em>, June 2020 <span class="verify">VERIFY outlet; most cite <em>Foreign
+Policy</em>, 15 June 2020</span>; <em>History Has Begun: The Birth of a New
+America</em> (Hurst, 2020); <em>The Dawn of Eurasia</em> (Allen Lane,
+2018)</td>
+<td><span class="tag tag-interp">INTERP: Maçães</span> Liberal universalism asked every
+society to adopt the same "operating system". Civilizational states
+reject this: they claim to be self-contained worlds with their own
+rules. In Maçães's account, even the United States is becoming a
+"civilization" of its own rather than the guardian of a universal
+order.</td>
+<td><span class="tag tag-interp">INTERP: PT</span> Brilliant and impressionistic;
+prediction more than proof. <span class="tag tag-interp">INTERP: CL</span> Underplays the
+fact that the people who suffer from civilizational exclusivity are
+usually internal minorities, not foreign rivals.</td>
+</tr>
+<tr class="odd">
+<td><strong>Amitav Acharya</strong> (2020)</td>
+<td>"The Myth of the 'Civilization State': Rising Powers and the
+Cultural Challenge to World Order", <em>Ethics &amp; International
+Affairs</em> 34(2), 2020, pp. 139–156 <span class="verify">VERIFY pages</span></td>
+<td><span class="tag tag-interp">INTERP: Acharya</span> The civilization-state is a
+<em>myth</em> in two senses. Historically, civilizations were never
+closed: Indian and Chinese civilizations spread through interaction,
+trade and borrowing (Buddhism in China is the prime example).
+Politically, the concept is used by elites to justify authoritarianism
+and exceptionalism. A better frame is a "multiplex world" of interacting
+cultures.</td>
+<td><span class="tag tag-interp">INTERP: HB</span> Very strong for Bengal: Bengal
+<em>was</em> a crossroads. <span class="tag tag-interp">INTERP: IT</span> Risks treating
+all civilizational self-understanding as manipulation, ignoring the
+genuine popular search for meaning and dignity after colonialism.
+<span class="tag tag-interp">INTERP: PT</span> Acharya's critique is the one Bangladesh's
+framework must pass.</td>
+</tr>
+<tr class="even">
+<td><strong>Göran Therborn</strong> (2021)</td>
+<td>"States, Nations, and Civilizations", <em>Fudan Journal of the
+Humanities and Social Sciences</em> 14 (2021), pp. 225–242 <span class="verify">VERIFY
+pages</span></td>
+<td><span class="tag tag-interp">INTERP: Therborn</span> Uses the concept
+historically-sociologically: some modern states (China, India, Iran,
+Egypt, Ethiopia, perhaps Japan) are built on long civilizational
+legacies, and the <em>mode</em> of entry into modernity (colonial,
+reactive modernisation, etc.) shapes them. Civilizations are "cultural
+reservoirs" that can be drawn on selectively.</td>
+<td><span class="tag tag-interp">INTERP: PT</span> More neutral and useful for analysis.
+But the "reservoir" metaphor puts agency on <em>present elites</em> who
+draw from it, which is exactly why it is so open to manipulation.</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="13-panel-debate-on-phase-1">1.3 Panel debate on Phase 1</h3>
+<ul>
+<li><strong>PT:</strong> "The concept is a family of claims, not one
+claim. Separate (a) <em>continuity</em> (a long cultural history
+exists), (b) <em>exceptionalism</em> (therefore universal norms don't
+apply to us), and (c) <em>hierarchy</em> (therefore the core culture has
+a privileged position in the state). Bangladesh can accept (a) without
+(b) and (c)."</li>
+<li><strong>CP:</strong> "In practice, (a) almost never stays alone. In
+every declared civilizational state I study, the language arrives with
+(b) and (c) within a decade."</li>
+<li><strong>IT:</strong> "That is an empirical generalisation from five
+cases with powerful centralising states. It does not establish
+necessity."</li>
+<li><strong>HB:</strong> "Most of these authors treat civilizations as
+<em>continuous</em>. Bengal's story is one of <em>synthesis and
+rupture</em>. If you import the Chinese template, you will force a false
+continuity on Bengal."</li>
+</ul>
+<p><strong>Conclusion 1.</strong> The concept moved from diagnosis (Pye)
+to self-legitimation (Zhang) to critique (Acharya). Its scholarly core
+is useful only if continuity claims are separated from exceptionalism
+and hierarchy. <strong>Evidence grade: Strong</strong> on the genealogy;
+<strong class="grade grade-moderate">Moderate</strong> on CP's claim that continuity talk tends to
+slide into hierarchy.</p>
+<hr />
+<h2 id="phase-2-definitions-and-distinctions"><span class="phase-no">Phase 2</span>Definitions and
+distinctions</h2>
+<h3 id="21-comparison-table">2.1 Comparison table</h3>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Dimension</th>
+<th><strong>Civilizational state</strong></th>
+<th><strong>Nation-state</strong></th>
+<th><strong>State-nation</strong> (Stepan, Linz and Yadav)</th>
+<th><strong>Empire</strong></th>
+<th><strong>Ummah-based polity</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Source of legitimacy</strong></td>
+<td>Guardianship of a long civilization; continuity, cultural mission;
+performance (often)</td>
+<td>Popular sovereignty of one "nation"; self-determination</td>
+<td>Constitutional patriotism plus recognition of multiple cultural
+identities; democratic consent</td>
+<td>Dynastic or imperial right; conquest; civilising mission; order</td>
+<td>Sovereignty of God (<em>hakimiyya</em>) as mediated by shari'a;
+ruler as trustee (<em>amana</em>); consultation (<em>shura</em>) and
+allegiance (<em>bay'a</em>)</td>
+</tr>
+<tr class="even">
+<td><strong>Boundary of membership</strong></td>
+<td>Cultural belonging; often fuzzy and transborder (diaspora, "Russian
+world", "cultural China")</td>
+<td>Citizenship, ideally coextensive with the nation</td>
+<td>Legal citizenship; nested, multiple identities expected ("I can be
+Tamil and Indian")</td>
+<td>Subject status, graded by rank, religion, region</td>
+<td>Faith (Muslims as full members); non-Muslims as protected
+communities (<em>dhimmis</em>, historically), or in modern
+reinterpretation as equal citizens</td>
+</tr>
+<tr class="odd">
+<td><strong>Role of religion</strong></td>
+<td>Varies: Confucian ethics (China), Orthodoxy (Russia), Hindu culture
+(India), Sunni-Turkish synthesis (Turkey), Shi'i jurisprudence
+(Iran)</td>
+<td>Varies from laic (France) to established church (Denmark); religion
+usually subordinate to the nation</td>
+<td>Accommodated plurally; "respect and support" (state may fund
+multiple religions; Stepan's "twin tolerations")</td>
+<td>Instrumental; usually tolerant if loyal (millet system, Mughal
+<em>sulh-i kull</em>)</td>
+<td>Constitutive: the polity exists to uphold the faith and the law</td>
+</tr>
+<tr class="even">
+<td><strong>Role of language</strong></td>
+<td>One civilizational language privileged (Mandarin, Russian, Hindi,
+Turkish, Persian)</td>
+<td>One national language central to identity</td>
+<td>Multiple official languages possible (India's Eighth Schedule;
+Belgium; Switzerland)</td>
+<td>Court/administrative language plus many local languages</td>
+<td>Arabic as sacred language; vernaculars tolerated or celebrated</td>
+</tr>
+<tr class="odd">
+<td><strong>Treatment of minorities</strong></td>
+<td>Tolerated within a hierarchy; subject to "integration"; dissenters
+frame as "alien"</td>
+<td>Assimilation or minority rights regimes; historically prone to
+homogenisation and expulsion</td>
+<td>Territorial and cultural autonomy; asymmetric federalism</td>
+<td>Differentiated rights; autonomy in exchange for loyalty and tax</td>
+<td>Classical: <em>dhimma</em> (protection plus jizya, some
+disabilities). Modern reformist: equal citizenship
+(<em>muwatana</em>)</td>
+</tr>
+<tr class="even">
+<td><strong>Relation to international order</strong></td>
+<td>Revisionist toward liberal universalism; spheres of influence;
+"multipolarity"</td>
+<td>Westphalian sovereignty; UN system</td>
+<td>Westphalian; often multilateralist</td>
+<td>Hierarchical; suzerainty, tribute</td>
+<td>Theoretically transnational (ummah over borders); in practice
+OIC-style cooperation among sovereign states</td>
+</tr>
+</tbody>
+</table></div>
+<p><span class="tag tag-fact">FACT</span> The state-nation concept is set out in Alfred
+Stepan, Juan J. Linz and Yogendra Yadav, <em>Crafting State-Nations:
+India and Other Multinational Democracies</em> (Johns Hopkins University
+Press, 2011). Their "twin tolerations" (religious authorities tolerate
+democratic institutions, and the state tolerates religious citizens'
+public participation) come from Stepan, "Religion, Democracy, and the
+'Twin Tolerations'", <em>Journal of Democracy</em> 11(4), 2000, pp.
+37–57.</p>
+<p><span class="tag tag-interp">INTERP: CL</span> The most realistic legal home for
+Bangladesh is a hybrid: a <em>nation-state</em> in its core legal form
+(single citizenship, single sovereignty) with <em>state-nation</em>
+safeguards for the Chittagong Hill Tracts (CHT) and religious
+minorities. "Civilizational" talk would then be a cultural and
+educational layer, not a legal hierarchy.</p>
+<p><span class="tag tag-interp">INTERP: IT</span> Disagrees: "If you strip all legal
+content from the civilizational idea, you have only rhetoric. Islam has
+legal content. The honest question is <em>how much</em> law and <em>for
+whom</em>, not whether."</p>
+<h3 id="22-working-definition">2.2 Working definition</h3>
+<p><span class="tag tag-norm">NORM, proposed by PT and CL with dissent noted</span></p>
+<blockquote>
+<p>A <strong>civilizational state</strong> is a sovereign state whose
+political community understands itself, and organises some public
+institutions, as the present custodian of a historically deep,
+distinctive and still-living cultural synthesis that is larger in time
+(and sometimes in space) than the modern state itself, and which claims
+that this synthesis supplies norms for public life that are not fully
+reducible to universal liberal or market principles.</p>
+</blockquote>
+<h3 id="23-testable-criteria-7">2.3 Testable criteria (7)</h3>
+<p>Each criterion can be scored 0 (absent), 1 (partial), 2 (strong)
+using evidence.</p>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>#</th>
+<th>Criterion</th>
+<th>How to test</th>
+<th>Key evidence type</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>C1</strong></td>
+<td><strong>Historical depth</strong>: a recognisable cultural synthesis
+persisting for at least several centuries before the modern state</td>
+<td>Continuous literary, architectural, legal, religious traditions;
+recognition by outside observers</td>
+<td>Manuscripts, monuments, inscriptions, coinage, travellers'
+accounts</td>
+</tr>
+<tr class="even">
+<td><strong>C2</strong></td>
+<td><strong>Distinctiveness</strong>: the synthesis is meaningfully
+different from its neighbours, not just a regional variant</td>
+<td>Comparative analysis with neighbouring traditions (North Indian
+Islam, West Bengal Hindu culture, Arakan, Assam)</td>
+<td>Literary and religious comparison; linguistic data</td>
+</tr>
+<tr class="odd">
+<td><strong>C3</strong></td>
+<td><strong>Mass, living continuity</strong>: the synthesis is lived by
+ordinary people now, not only by elites or museums</td>
+<td>Survey data on identity; ritual practice; popular culture</td>
+<td>World Values Survey, Pew; ethnography</td>
+</tr>
+<tr class="even">
+<td><strong>C4</strong></td>
+<td><strong>Institutional translation</strong>: the state actually
+organises public institutions (education, law, cultural policy) around
+the synthesis</td>
+<td>Constitution, curricula, state cultural budgets, courts</td>
+<td>Legal texts, budgets, syllabi</td>
+</tr>
+<tr class="odd">
+<td><strong>C5</strong></td>
+<td><strong>Normative self-understanding</strong>: elites and citizens
+claim the synthesis supplies public norms beyond liberal or market
+principles</td>
+<td>Party manifestos, intellectual production, public discourse</td>
+<td>Discourse analysis</td>
+</tr>
+<tr class="even">
+<td><strong>C6</strong></td>
+<td><strong>Inclusive capacity</strong>: the synthesis can include
+citizens who do not share its religious core without legal
+subordination</td>
+<td>Equal rights in law and practice; minority representation; violence
+data</td>
+<td>Court records, HR reports, minority survey data</td>
+</tr>
+<tr class="odd">
+<td><strong>C7</strong></td>
+<td><strong>External recognition and projection</strong>: other states
+or civilizations recognise the polity as a cultural pole; the state
+projects the synthesis abroad</td>
+<td>Diplomacy, diaspora institutions, cultural exports, scholarship</td>
+<td>Foreign policy documents, soft-power indices</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Dissent.</strong></p>
+<ul>
+<li><strong>CP:</strong> "C6 is a normative criterion smuggled into a
+descriptive definition. China and Iran score low on C6 but are clearly
+civilizational states." <strong>PT's reply:</strong> "Agreed. So split
+them: C1–C5 and C7 define <em>whether</em> a state is civilizational; C6
+measures <em>whether it is a good one</em>. We keep C6 because the study
+circle wants a framework that survives its critics."</li>
+<li><strong>HB:</strong> "C1 will be gamed. Every nationalist claims
+depth. Insist on primary-source evidence, not slogans."</li>
+</ul>
+<p><strong>Conclusion 2.</strong> A definition with explicit, scorable
+criteria is the only way to stop the concept being used as a slogan.
+<strong>Evidence grade: Moderate</strong> (definitional proposals cannot
+be "proven", but the criteria are operational).</p>
+<hr />
+<h2 id="phase-3-islamic-intellectual-resources"><span class="phase-no">Phase 3</span>Islamic
+intellectual resources</h2>
+<h3 id="31-scriptural-and-early-anchors-for-orientation">3.1 Scriptural
+and early anchors (for orientation)</h3>
+<ul>
+<li><span class="tag tag-fact">FACT</span> Qur'an 49:13: "O mankind, We created you
+from a male and female and made you peoples (<em>shu'uban</em>) and
+tribes (<em>qaba'il</em>) that you may know one another
+(<em>li-ta'arafu</em>). The most noble of you in the sight of God is the
+most righteous." Frequently cited as recognising peoplehood while
+denying it rank.</li>
+<li><span class="tag tag-fact">FACT</span> Qur'an 30:22 lists "the diversity of your
+tongues and colours" among God's signs. Cited by Bengali Muslim writers
+to sanctify the mother tongue.</li>
+<li><span class="tag tag-fact">FACT</span> A hadith in Sunan Abi Dawud (Book of
+Etiquette, no. 5121 in common numbering <span class="verify">VERIFY</span>): "He is not of us who
+calls to <em>'asabiyya</em>, who fights for <em>'asabiyya</em>, or who
+dies for <em>'asabiyya</em>." Central to Islamist critiques of
+nationalism. Another report defines <em>'asabiyya</em> as "helping your
+people in wrongdoing" (Abu Dawud 5119 <span class="verify">VERIFY</span>), which reformists cite
+to argue that only <em>unjust</em> partisanship is condemned.</li>
+<li><span class="tag tag-fact">FACT</span> The "Constitution of Medina" (<em>Sahifat
+al-Madina</em>) describes the believers and certain Jewish tribes as
+"one community (<em>umma wahida</em>) apart from other people" in some
+clauses, while preserving their separate religions. <span class="tag tag-interp">INTERP:
+IT</span> Reformists (e.g., An-Na'im's circle, and many Indonesian
+scholars) read this as a precedent for a plural political community;
+others read the Jewish clauses as alliance, not common citizenship. For
+text and analysis: Michael Lecker, <em>The "Constitution of Medina":
+Muhammad's First Legal Document</em> (Darwin Press, 2004).</li>
+</ul>
+<h3 id="32-thinker-by-thinker-analysis">3.2 Thinker-by-thinker
+analysis</h3>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Thinker</th>
+<th>Key texts</th>
+<th>What it offers the frame</th>
+<th>Where it resists</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Ibn Khaldun</strong> (1332–1406)</td>
+<td><em>The Muqaddimah: An Introduction to History</em>, trans. Franz
+Rosenthal, 3 vols (Princeton University Press / Bollingen, 1958);
+abridged ed. N. J. Dawood (1967)</td>
+<td><span class="tag tag-interp">INTERP: IT</span> <em>'Asabiyya</em> (group feeling,
+solidarity) is the engine of state formation; religion can
+<em>amplify</em> it into something far stronger (bk. 1, ch. 3).
+<em>'Umran</em> (civilisation, social organisation) has nomadic
+(<em>badawa</em>) and sedentary (<em>hadara</em>) phases; cities, crafts
+and sciences flourish with <em>hadara</em>. Offers a <em>sociology</em>
+of how civilizations rise and decay, not a myth.</td>
+<td><span class="tag tag-interp">INTERP: IT, HB</span> His theory is cyclical: luxury
+corrodes <em>'asabiyya</em> in roughly three to four generations and the
+dynasty falls. A civilizational state built on <em>'asabiyya</em> has a
+built-in expiry date unless it institutionalises solidarity. He also
+judges <em>'asabiyya</em> morally neutral: it can serve justice or
+tyranny. <strong>Lesson:</strong> solidarity is a resource to be
+disciplined by law, not a value in itself.</td>
+</tr>
+<tr class="even">
+<td><strong>Muhammad Iqbal</strong> (1877–1938)</td>
+<td><em>The Reconstruction of Religious Thought in Islam</em> (1930;
+expanded 1934), esp. ch. 6, "The Principle of Movement in the Structure
+of Islam"; Presidential Address, All-India Muslim League, Allahabad, 29
+Dec 1930; poem "Wataniyat" (in <em>Bang-e-Dara</em>, 1924)</td>
+<td><span class="tag tag-interp">INTERP: IT</span> Iqbal both attacks territorial
+nationalism and helps found a Muslim homeland. Allahabad (1930) argues
+that Indian Muslims are a distinct cultural unit entitled to a
+consolidated state in the north-west, so that Islam can "rid itself of
+the stamp that Arabian Imperialism was forced to give it". In
+<em>Reconstruction</em> ch. 6, he endorses Turkish <em>ijtihad</em> and
+argues that each Muslim nation should first "sink into her own deeper
+self" and that Islam is "neither nationalism nor imperialism but a
+League of Nations" <span class="verify">VERIFY exact wording</span>. <strong>This is the closest
+classical-modern charter for "Muslim civilisational nationalism":
+national units as stepping stones to a plural Muslim
+commonwealth.</strong></td>
+<td><span class="tag tag-fact">FACT</span> "Wataniyat" calls the territorial homeland
+(<em>watan</em>) the "biggest of the new idols". <span class="tag tag-interp">INTERP:
+IT</span> His Allahabad scheme was about the <em>north-west</em>;
+Bengal was absent from it. Bangladeshis cannot claim Iqbal
+straightforwardly. <span class="tag tag-interp">INTERP: HB</span> His 1938 exchange with
+Madani (below) shows he regarded nationality based on territory as a
+threat to Muslim identity.</td>
+</tr>
+<tr class="odd">
+<td><strong>Abul A'la Maududi</strong> (1903–1979)</td>
+<td><em>Masala-e-Qaumiyat</em> ("The Question of Nationality", c.
+1937–39) <span class="verify">VERIFY date</span>; <em>Tehrik-e-Azadi-e-Hind aur Musalman</em>
+(vol. 1, 1938–39); English selections in <em>Nationalism and India</em>
+(Lahore: Maktaba-e-Jamaat-e-Islami, 1947) <span class="verify">VERIFY</span>; <em>The Islamic Law
+and Constitution</em>, trans. Khurshid Ahmad (Lahore: Islamic
+Publications, 1955 and later eds.)</td>
+<td><span class="tag tag-interp">INTERP: IT</span> Offers a full theory of an ideological
+state based on God's sovereignty (<em>hakimiyya</em>), shari'a and a
+righteous elite. Provides institutional content (shura, Islamic economy,
+Islamic education).</td>
+<td><span class="tag tag-interp">INTERP: IT, PT</span> Maududi rejected <em>both</em>
+Indian nationalism <em>and</em> Muslim nationalism: the Muslim League's
+idea of a Muslim <em>nation</em> was also, for him, a Western concept
+dressed in Islamic clothes. A state should be "ideological", not
+national. <strong>This is the sharpest internal Islamic objection to
+"Muslim civilisational nationalism".</strong> Note: Jamaat-e-Islami in
+East Pakistan opposed Bangladesh's independence in 1971 <span class="tag tag-fact">FACT</span>, a
+history that makes Maududi's legacy politically explosive in
+Bangladesh.</td>
+</tr>
+<tr class="even">
+<td><strong>Husain Ahmad Madani</strong> (1879–1957)</td>
+<td><em>Muttahida Qaumiyat aur Islam</em> (Delhi, 1938); English:
+<em>Composite Nationalism and Islam</em>, trans. Mohammad Anwer Hussain
+and Hasan Imam (Manohar, 2005), with introduction by Barbara
+Metcalf</td>
+<td><span class="tag tag-interp">INTERP: IT</span> Distinguishes <em>qawm</em> (nation; a
+territorial-political community that can include people of many faiths)
+from <em>millat/ummah</em> (religious community). Muslims can be part of
+a composite Indian <em>qawm</em> while remaining fully part of the
+<em>ummah</em>. Cites the Medina document as precedent. <strong>Offers a
+classical-'ulama' justification for a plural nation containing Muslims,
+which a Bangladeshi framework can use for its <em>non</em>-Muslim
+citizens: Hindus, Buddhists and Christians as co-members of the
+Bangladeshi qawm.</strong></td>
+<td><span class="tag tag-interp">INTERP: HB</span> Madani's composite nationalism was
+designed for Muslims as a <em>minority</em> in a Hindu-majority India.
+Applied in reverse (Muslims as 91% majority), it implies that
+Bangladesh's <em>qawm</em> must be composite, not Muslim. It therefore
+undercuts a "Muslim" civilisational nation as much as it supports a
+plural one. <span class="tag tag-fact">FACT</span> Iqbal wrote a sharp Persian quatrain
+against Madani in 1938 ("Husain Ahmad"), and the two exchanged letters
+through intermediaries.</td>
+</tr>
+<tr class="odd">
+<td><strong>Malik Bennabi</strong> (1905–1973)</td>
+<td><em>Les conditions de la renaissance</em> (Algiers, 1949); English:
+<em>The Conditions of Renaissance</em> / <em>The Question of Ideas in
+the Muslim World</em> (Islamic Book Trust, Kuala Lumpur, various years)
+<span class="verify">VERIFY English eds.</span></td>
+<td><span class="tag tag-interp">INTERP: IT, DE</span> Civilisation = man + soil + time,
+catalysed by a religious idea. Decline is a state of "colonisability"
+(<em>colonisabilité</em>): an internal condition that precedes and
+enables colonisation. Renewal requires work on people's ideas, ethics
+and organisation, not mainly on politics or slogans. <strong>Most useful
+thinker for a developmental reading: civilisation is <em>built</em> by
+disciplined social effort, not inherited.</strong></td>
+<td><span class="tag tag-interp">INTERP: PT</span> Bennabi is critical of "the politics
+of slogans" (<em>boulitique</em>) and fetishised identity; he would
+distrust a party that markets civilizational identity before it delivers
+schools, hygiene, savings and work ethic. His categories are also
+abstract and hard to operationalise.</td>
+</tr>
+<tr class="even">
+<td><strong>Ahmet Davutoğlu</strong> (b. 1959)</td>
+<td><em>Alternative Paradigms: The Impact of Islamic and Western
+Weltanschauungs on Political Theory</em> (University Press of America,
+1994); <em>Civilizational Transformation and the Muslim World</em>
+(Kuala Lumpur: Mahir, 1994); <em>Stratejik Derinlik</em> ("Strategic
+Depth", Küre Yayınları, 2001)</td>
+<td><span class="tag tag-interp">INTERP: CP</span> Muslims form a civilization with its
+own ontology (tawhid-based), distinct from Western secular modernity.
+"Strategic depth": a state's power comes from its history and geography,
+so Turkey should re-engage Ottoman-era hinterlands. Offers a model for
+linking civilizational identity to <em>foreign policy</em>.</td>
+<td><span class="tag tag-interp">INTERP: CP</span> "Zero problems with neighbours"
+collapsed after 2011 (Syria, Egypt, Israel, Russia jet incident 2015).
+Davutoğlu himself broke with Erdoğan (resigned 2016; founded Future
+Party, 2019). <strong>Lesson:</strong> civilizational foreign policy
+overestimates cultural affinity and underestimates material power and
+rivals' interests.</td>
+</tr>
+<tr class="odd">
+<td><strong>Wael B. Hallaq</strong> (b. 1955)</td>
+<td><em>The Impossible State: Islam, Politics, and Modernity's Moral
+Predicament</em> (Columbia University Press, 2013)</td>
+<td><span class="tag tag-interp">INTERP: Hallaq</span> The modern state (sovereign,
+legislating, bureaucratic, culturally homogenising, with a monopoly on
+violence and law) is <em>structurally incompatible</em> with the
+pre-modern shari'a order, in which law was produced by a juristic class
+independent of rulers and embedded in moral community. An "Islamic
+state" is therefore a contradiction in terms.</td>
+<td><strong>For the frame, this is devastating and liberating at
+once.</strong> <span class="tag tag-interp">INTERP: IT</span> Devastating: a Bangladeshi
+state cannot be the "Islamic civilizational state" in the classical
+sense. Liberating: it relocates Islamic civilisation to <em>society</em>
+(waqf, education, ethics, community law) rather than the state.
+<span class="tag tag-interp">INTERP: PT</span> Critics (e.g., Andrew March, review
+symposia <span class="verify">VERIFY</span>) argue Hallaq idealises the pre-modern order and
+offers no workable politics for the present.</td>
+</tr>
+<tr class="even">
+<td><strong>Abdullahi Ahmed An-Na'im</strong> (b. 1946)</td>
+<td><em>Islam and the Secular State: Negotiating the Future of
+Shari'a</em> (Harvard University Press, 2008); <em>Toward an Islamic
+Reformation: Civil Liberties, Human Rights, and International Law</em>
+(Syracuse University Press, 1990)</td>
+<td><span class="tag tag-interp">INTERP: An-Na'im</span> Shari'a can only be followed
+<em>voluntarily</em> by believers; once the state enforces it, it
+becomes the state's political will, not God's law. Therefore Muslims
+need a religiously neutral state to be authentically Muslim. Islam may
+still inform public reason, provided arguments are made in "civic
+reason" accessible to all citizens.</td>
+<td><span class="tag tag-interp">INTERP: IT</span> Strongest Islamic argument for a
+<em>civilizational society within a constitutionally neutral state</em>.
+Weakness: many Bangladeshi 'ulama' and Islamist parties reject the
+premise; An-Na'im's reformist methodology (following his teacher Mahmoud
+Mohamed Taha) is seen as heterodox by many.</td>
+</tr>
+</tbody>
+</table></div>
+<h3
+id="33-is-muslim-civilisational-nationalism-coherent-or-a-contradiction-between-ummah-and-qawm">3.3
+Is "Muslim civilisational nationalism" coherent, or a contradiction
+between <em>ummah</em> and <em>qawm</em>?</h3>
+<p><strong>Panel debate.</strong></p>
+<ul>
+<li><strong>IT (position A, contradiction):</strong> "On the Maududian
+and many Salafi readings, yes: <em>qawmiyya</em> (nationalism) is the
+modern form of <em>'asabiyya</em>, and loyalty to a territorial nation
+over the global ummah is <em>jahiliyya</em>. A Muslim
+<em>nationalism</em> is a contradiction; a Muslim <em>civilization</em>
+is not, but it is not national."</li>
+<li><strong>IT (position B, layered coherence):</strong> "On the
+Iqbal–Madani axis, no: the ummah is a moral-religious community, the
+qawm a political one. Iqbal's 'League of Nations' model allows national
+units. Qur'an 49:13 recognises <em>shu'ub</em>. Every Muslim polity in
+history was a particular polity (Abbasid, Mughal, Bengal
+Sultanate)."</li>
+<li><strong>PT:</strong> "There's a hidden third option.
+'Civilisational' does work 'national' cannot: it names a
+<em>synthesis</em>, not a race or a religion. 'Bengal-delta Islamic
+civilisation' is a regional civilization within the larger Islamicate
+world (Marshall Hodgson's term in <em>The Venture of Islam</em>, 3 vols,
+University of Chicago Press, 1974). Persianate Iran, Ottoman Anatolia,
+Malay Nusantara and Bengal are parallel regional Islamicate
+civilizations."</li>
+<li><strong>HB:</strong> "Historically, Bengal Muslims lived
+<em>both</em> identities without a sense of contradiction: Arabic-script
+piety plus Bengali-language devotional literature. The contradiction
+arises only when the state demands <em>exclusive</em> primacy for one
+level."</li>
+<li><strong>CL:</strong> "Coherence depends on who is left out. If
+'Muslim' qualifies 'civilisational' in law, non-Muslim citizens become
+second-class. If it qualifies it as <em>historical description</em> (the
+delta civilization was shaped decisively by Islam), it is coherent and
+compatible with equal citizenship."</li>
+</ul>
+<p><strong>Panel resolution (with dissent).</strong></p>
+<blockquote>
+<p><span class="tag tag-norm">NORM, majority: PT, HB, CL, IT-position B, DE</span>
+"Bangla Muslim civilisational nationalism" is coherent <strong>if and
+only if</strong> (1) the <em>ummah</em> is treated as a moral-religious
+horizon, not a rival political sovereign; (2) the <em>qawm</em> is
+defined civically and territorially (all citizens of Bangladesh), with
+the <em>civilizational</em> content describing the historically dominant
+synthesis, not a criterion of membership; and (3) the word "Muslim"
+describes the synthesis's formative influence, not a legal rank among
+citizens.</p>
+<p><span class="tag tag-norm">NORM, dissent: IT-position A</span> Without a commitment
+to shari'a as public law, the phrase is "Islam as folklore", using
+religion for nationalist ends.</p>
+<p><span class="tag tag-interp">INTERP, dissent: CP</span> Whatever theorists intend, in
+practice the qualifier "Muslim" will be read by voters and activists as
+a membership test.</p>
+</blockquote>
+<p><strong>Evidence grade: Moderate.</strong> The textual resources for
+a layered reading are real (Iqbal, Madani, Qur'an 49:13, Hodgson's
+"Islamicate"), but so is a long, authoritative tradition (Maududi, Qutb,
+many 'ulama') that rejects nationalism. The question is not settled in
+Islamic thought; it is a live choice.</p>
+<hr />
+<h2 id="phase-4-comparative-case-studies"><span class="phase-no">Phase 4</span>Comparative case
+studies</h2>
+<p><strong>Data note.</strong> Figures are rounded approximations from
+World Bank WDI and UNDP HDR 2023/24 (data year 2022 for HDI). They are
+given to show orders of magnitude. <strong>All figures: <span class="verify">VERIFY</span> against
+the latest WDI/HDR before public use.</strong> "Manufacturing" is
+manufacturing value added (% GDP).</p>
+<h3 id="41-summary-data-table">4.1 Summary data table</h3>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Country</th>
+<th>GDP per capita, current US$ (c. 2023)</th>
+<th>Long-run growth note</th>
+<th>Manufacturing, % GDP (approx.)</th>
+<th>Exports profile</th>
+<th>HDI 2022 (HDR 2023/24)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>China</td>
+<td>~12,600</td>
+<td>~9% avg real GDP growth 1978–2018; slower (~5%) in 2020s</td>
+<td>~26–27%</td>
+<td>World's largest goods exporter (~14% of world merchandise
+exports)</td>
+<td>0.788</td>
+</tr>
+<tr class="even">
+<td>India</td>
+<td>~2,500</td>
+<td>~6–7% avg since early 1990s</td>
+<td>~13%</td>
+<td>Services-heavy (IT, business services); goods share in world
+~2%</td>
+<td>0.644</td>
+</tr>
+<tr class="odd">
+<td>Russia</td>
+<td>~13,000–14,000</td>
+<td>Strong 2000s (oil), stagnation after 2013; sanctions since
+2014/2022</td>
+<td>~13%</td>
+<td>Hydrocarbons, metals, grain, arms</td>
+<td>0.821</td>
+</tr>
+<tr class="even">
+<td>Turkey (Türkiye)</td>
+<td>~13,000</td>
+<td>Rapid 2002–2013; volatile since; high inflation 2021–24</td>
+<td>~19–22%</td>
+<td>Autos, textiles, machinery; EU customs union since 1996</td>
+<td>0.855</td>
+</tr>
+<tr class="odd">
+<td>Iran</td>
+<td>~4,000–5,000 (highly exchange-rate dependent)</td>
+<td>Stagnation under sanctions since 2012</td>
+<td>~15–20% <span class="verify">VERIFY</span></td>
+<td>Oil, petrochemicals</td>
+<td>0.780</td>
+</tr>
+<tr class="even">
+<td>Malaysia</td>
+<td>~11,600</td>
+<td>~6% avg 1970–2010; middle-income trap debate</td>
+<td>~23%</td>
+<td>Electronics/semiconductors, palm oil, LNG</td>
+<td>0.807</td>
+</tr>
+<tr class="odd">
+<td>Indonesia</td>
+<td>~4,900</td>
+<td>~5% steady since 2000s</td>
+<td>~19%</td>
+<td>Coal, palm oil, nickel (downstreaming), garments</td>
+<td>0.713</td>
+</tr>
+<tr class="even">
+<td>Pakistan</td>
+<td>~1,400–1,500</td>
+<td>Boom-bust; repeated IMF programmes (24+ since 1958 <span class="verify">VERIFY
+count</span>)</td>
+<td>~12–13%</td>
+<td>Textiles, rice</td>
+<td>0.540</td>
+</tr>
+<tr class="odd">
+<td>Egypt</td>
+<td>~3,500</td>
+<td>Moderate growth; recurring FX crises; IMF programmes 2016,
+2022–24</td>
+<td>~15%</td>
+<td>Hydrocarbons, Suez Canal revenue, tourism</td>
+<td>0.728</td>
+</tr>
+<tr class="even">
+<td><strong>Bangladesh</strong> (benchmark)</td>
+<td><strong>~2,500–2,700</strong></td>
+<td><strong>~6–7% avg 2010–2019</strong></td>
+<td><strong>~22%</strong></td>
+<td><strong>Readymade garments ~80–85% of goods exports</strong></td>
+<td><strong>0.670</strong></td>
+</tr>
+</tbody>
+</table></div>
+<p><span class="tag tag-interp">INTERP: DE</span> The table already teaches one lesson:
+<strong>civilizational self-description does not predict economic
+performance.</strong> China and Malaysia grew fast; Russia, Iran,
+Pakistan and Egypt did not. What separates them is export-oriented
+industrialisation, state capacity, land and education policy, and
+macroeconomic discipline. <strong>Evidence grade: Strong.</strong></p>
+<h3 id="42-declared-civilizational-states">4.2 Declared civilizational
+states</h3>
+<h4 id="china">China</h4>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Aspect</th>
+<th>Content</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Founding narrative and key texts</strong></td>
+<td><span class="tag tag-fact">FACT</span> "Great rejuvenation of the Chinese nation"
+(<em>Zhonghua minzu weida fuxing</em>) and the "Chinese Dream" (Xi
+Jinping, from Nov 2012). Fei Xiaotong's concept of the Chinese nation as
+a "pluralistic unity" (<em>duoyuan yiti</em>), Tanner Lecture, Hong Kong
+1988 <span class="verify">VERIFY venue</span>. "Document No. 9" (2013, leaked) warning against
+"Western constitutional democracy" and "universal values".
+<span class="tag tag-fact">FACT</span> The Global Civilization Initiative, announced by
+Xi in March 2023, calls for respect for "the diversity of civilizations"
+and rejects imposing values.</td>
+</tr>
+<tr class="even">
+<td><strong>Institutional translation</strong></td>
+<td><span class="tag tag-fact">FACT</span> Constitution (1982, amended 2018) preamble
+names leadership of the CPC and "Xi Jinping Thought"; Article 4
+recognises minority nationalities and regional autonomy. Patriotic
+Education Law (in force 1 Jan 2024). Mandarin-medium education expanded
+in Tibet, Xinjiang and Inner Mongolia (2020 Inner Mongolia protests over
+reduced Mongolian instruction). Hukou system stratifies citizenship by
+residence.</td>
+</tr>
+<tr class="odd">
+<td><strong>Economic model and outcomes</strong></td>
+<td><span class="tag tag-fact">FACT</span> Gradual market reform from 1978: household
+responsibility system, township and village enterprises, Special
+Economic Zones (Shenzhen 1980), WTO accession 2001.
+<span class="tag tag-fact">FACT</span> World Bank and China's DRC, <em>Four Decades of
+Poverty Reduction in China</em> (2022): close to 800 million people
+lifted out of extreme poverty since 1978. <span class="tag tag-interp">INTERP: DE</span>
+Growth model = high investment, export-led manufacturing,
+infrastructure, state-directed credit; now facing debt, property-sector
+crisis (Evergrande default 2021), demographic decline.</td>
+</tr>
+<tr class="even">
+<td><strong>Minorities and dissent</strong></td>
+<td><span class="tag tag-fact">FACT</span> OHCHR, <em>Assessment of human rights
+concerns in the Xinjiang Uyghur Autonomous Region</em>, 31 Aug 2022:
+"serious human rights violations" that "may constitute international
+crimes, in particular crimes against humanity". <span class="tag tag-fact">FACT</span>
+National Security Law for Hong Kong (30 June 2020). Tiananmen
+(1989).</td>
+</tr>
+<tr class="odd">
+<td><strong>Lessons for Bangladesh</strong></td>
+<td><strong>Positive:</strong> long-horizon industrial policy, export
+zones, infrastructure, mass primary health and education before
+democratisation of consumption; civilizational confidence used to build
+state capacity. <strong>Negative:</strong> "pluralistic unity" became
+forced assimilation once security fears dominated; civilizational
+rhetoric gave no protection to minorities; an unaccountable state can
+make catastrophic errors (Great Leap Forward famine, 1959–61).</td>
+</tr>
+</tbody>
+</table></div>
+<h4 id="india-hindutva">India (Hindutva)</h4>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Aspect</th>
+<th>Content</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Founding narrative and key texts</strong></td>
+<td><span class="tag tag-fact">FACT</span> V. D. Savarkar, <em>Essentials of
+Hindutva</em> (1923; later <em>Hindutva: Who Is a Hindu?</em>): a Hindu
+is one who regards India as both fatherland (<em>pitribhumi</em>) and
+holy land (<em>punyabhumi</em>), which by definition puts Muslims and
+Christians outside full belonging. M. S. Golwalkar, <em>We or Our
+Nationhood Defined</em> (1939) and <em>Bunch of Thoughts</em> (1966).
+Contemporary: "civilizational state" language used by Indian officials,
+e.g. External Affairs Minister S. Jaishankar, <em>The India Way:
+Strategies for an Uncertain World</em> (HarperCollins, 2020).</td>
+</tr>
+<tr class="even">
+<td><strong>Institutional translation</strong></td>
+<td><span class="tag tag-fact">FACT</span> Citizenship (Amendment) Act 2019 (CAA):
+fast-track citizenship for Hindus, Sikhs, Buddhists, Jains, Parsis and
+Christians from Afghanistan, Bangladesh and Pakistan, but not Muslims;
+rules notified March 2024. National Register of Citizens in Assam (final
+list 31 Aug 2019) excluded about 1.9 million people. Abrogation of
+Article 370 (J&amp;K special status), Aug 2019, upheld by the Supreme
+Court Dec 2023. Textbook revisions by NCERT (2022–23) removing or
+trimming sections on Mughals and on the 2002 Gujarat violence <span class="verify">VERIFY
+specifics</span>. Ram Mandir consecration, Ayodhya, 22 Jan 2024, after the
+Supreme Court's 2019 Ayodhya judgment.</td>
+</tr>
+<tr class="odd">
+<td><strong>Economic model and outcomes</strong></td>
+<td><span class="tag tag-interp">INTERP: DE</span> Liberalisation since 1991;
+services-led growth; manufacturing stuck around 13–17% of GDP despite
+"Make in India" (2014) and Production-Linked Incentives (2020). Large
+infrastructure push; digital public infrastructure (Aadhaar, UPI) widely
+regarded as world-leading. Hindutva itself has no distinctive economic
+model.</td>
+</tr>
+<tr class="even">
+<td><strong>Minorities and dissent</strong></td>
+<td><span class="tag tag-fact">FACT</span> USCIRF has recommended India be designated a
+"Country of Particular Concern" each year since 2020. Documented
+vigilante "cow protection" killings (Human Rights Watch, <em>Violent Cow
+Protection in India</em>, Feb 2019). Delhi riots Feb 2020 (53 dead,
+majority Muslims). Press freedom: India ranked 159th of 180 in RSF's
+2024 index <span class="verify">VERIFY</span>.</td>
+</tr>
+<tr class="odd">
+<td><strong>Lessons for Bangladesh</strong></td>
+<td><strong>Positive:</strong> civilizational confidence used to build
+digital public goods and infrastructure; ability to project culture
+(yoga, diaspora). <strong>Negative:</strong> this is the most direct
+mirror. A majority civilizational nationalism in India targets
+Bengali-speaking Muslims as "infiltrators" (NRC Assam). <span class="tag tag-norm">NORM,
+CL</span> A Bangladesh that adopts the mirror-image would legitimise
+the very logic used against Bengali Muslims in Assam and West Bengal,
+and lose the moral high ground.</td>
+</tr>
+</tbody>
+</table></div>
+<h4 id="russia">Russia</h4>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Aspect</th>
+<th>Content</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Founding narrative and key texts</strong></td>
+<td><span class="tag tag-fact">FACT</span> Nikolai Danilevsky, <em>Russia and
+Europe</em> (1869): Slavic "cultural-historical type" distinct from
+Europe. Eurasianism (Trubetskoy, 1920s). Putin, "Russia at the Turn of
+the Millennium" (Dec 1999); "On the Historical Unity of Russians and
+Ukrainians" (July 2021). <span class="tag tag-fact">FACT</span> The <em>Concept of the
+Foreign Policy of the Russian Federation</em> (31 Mar 2023) describes
+Russia as "a unique country-civilization". "Russian World" (<em>Russkiy
+mir</em>) Foundation, 2007.</td>
+</tr>
+<tr class="even">
+<td><strong>Institutional translation</strong></td>
+<td><span class="tag tag-fact">FACT</span> 2020 constitutional amendments: reference to
+"faith in God" inherited from ancestors (Art. 67.1), Russian as language
+of the "state-forming people" (Art. 68), marriage defined as man and
+woman (Art. 72), presidential term reset. "Foreign agent" law (2012,
+broadened 2020–22).</td>
+</tr>
+<tr class="odd">
+<td><strong>Economic model and outcomes</strong></td>
+<td><span class="tag tag-interp">INTERP: DE</span> Rentier hydrocarbon economy; growth in
+2000s tracked oil prices; failed diversification; sanctions since 2014
+and especially 2022; war economy.</td>
+</tr>
+<tr class="even">
+<td><strong>Minorities and dissent</strong></td>
+<td><span class="tag tag-fact">FACT</span> Full-scale invasion of Ukraine, 24 Feb 2022,
+partly justified by civilizational claims about Ukrainians as part of
+the Russian people. Death of Alexei Navalny in custody (Feb 2024).
+Jehovah's Witnesses banned as "extremist" (Supreme Court, 2017). Ethnic
+minority regions bore disproportionate mobilisation burdens <span class="tag tag-interp">INTERP:
+multiple analysts; VERIFY data</span>.</td>
+</tr>
+<tr class="odd">
+<td><strong>Lessons for Bangladesh</strong></td>
+<td><strong>Negative (dominant):</strong> civilizational nationalism can
+be weaponised to deny a neighbour's nationhood, and Bangladesh has been
+on the receiving end of such denial (Pakistan, 1971). A "Bengal
+civilization" claim that spills across borders (West Bengal, Tripura,
+Assam, Arakan) would be read as irredentism. Rentier economies and
+civilizational rhetoric reinforce each other. <strong>Positive:</strong>
+very limited; perhaps the role of a national church in social cohesion,
+but with heavy costs.</td>
+</tr>
+</tbody>
+</table></div>
+<h4 id="turkey-türkiye">Turkey (Türkiye)</h4>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Aspect</th>
+<th>Content</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Founding narrative and key texts</strong></td>
+<td><span class="tag tag-fact">FACT</span> Kemalist secular nationalism (1923–). Ziya
+Gökalp, <em>The Principles of Turkism</em> (<em>Türkçülüğün
+Esasları</em>, 1923): "culture" (<em>hars</em>) is national,
+"civilisation" (<em>medeniyet</em>) is international. Turkish-Islamic
+Synthesis (<em>Türk-İslam Sentezi</em>), promoted by the Intellectuals'
+Hearth (<em>Aydınlar Ocağı</em>) and adopted after the 1980 coup. AKP
+era (2002–): Davutoğlu's <em>Stratejik Derinlik</em> (2001), neo-Ottoman
+memory, Hagia Sophia reconverted to a mosque (July 2020).</td>
+</tr>
+<tr class="even">
+<td><strong>Institutional translation</strong></td>
+<td><span class="tag tag-fact">FACT</span> 1982 Constitution: compulsory "religious
+culture and ethics" lessons (Art. 24). Diyanet (Presidency of Religious
+Affairs) with large budget and staff. 2017 referendum created an
+executive presidency. Imam Hatip schools expanded strongly after 2012
+education reform.</td>
+</tr>
+<tr class="odd">
+<td><strong>Economic model and outcomes</strong></td>
+<td><span class="tag tag-interp">INTERP: DE</span> "Anatolian tigers" (conservative SME
+manufacturers in Kayseri, Konya, Gaziantep) linked to Islamic business
+association MÜSİAD. EU customs union (1996) drove export manufacturing.
+Strong growth 2002–2013; then currency crises (2018, 2021) and inflation
+exceeding 80% in late 2022 <span class="tag tag-fact">FACT, TurkStat</span> after unorthodox rate
+cuts.</td>
+</tr>
+<tr class="even">
+<td><strong>Minorities and dissent</strong></td>
+<td><span class="tag tag-fact">FACT</span> After the July 2016 coup attempt, more than
+150,000 people were detained or dismissed from public service under
+emergency decrees (figures vary by source, e.g., OHCHR report March
+2018). Kurdish issue: HDP co-chairs jailed since 2016; trustee
+(<em>kayyum</em>) appointments replacing elected mayors. RSF and CPJ
+rank Turkey among the top jailers of journalists in several years
+(2016–2022) <span class="verify">VERIFY years</span>.</td>
+</tr>
+<tr class="odd">
+<td><strong>Lessons for Bangladesh</strong></td>
+<td><strong>Positive:</strong> the Turkish-Islamic Synthesis shows a
+<em>national-Islamic</em> synthesis can be built through education and
+institutions; conservative-pious entrepreneurs can be mobilised into
+export manufacturing ("Islamic Calvinists", European Stability
+Initiative report, 2005). <strong>Negative:</strong> synthesis was first
+engineered by a military junta; the Diyanet model makes the state the
+arbiter of correct Islam; civilizational politics fused with
+personalised power and eroded central-bank independence.</td>
+</tr>
+</tbody>
+</table></div>
+<h4 id="iran">Iran</h4>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Aspect</th>
+<th>Content</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Founding narrative and key texts</strong></td>
+<td><span class="tag tag-fact">FACT</span> Ruhollah Khomeini, <em>Hokumat-e Eslami:
+Velayat-e Faqih</em> (lectures, Najaf, 1970). Ali Shariati's
+revolutionary Shi'ism. Rival narrative of pre-Islamic Persian
+civilization (Pahlavi era, Persepolis 1971).</td>
+</tr>
+<tr class="even">
+<td><strong>Institutional translation</strong></td>
+<td><span class="tag tag-fact">FACT</span> 1979 Constitution (amended 1989): Art. 4 all
+laws must be based on Islamic criteria; Art. 5 and 107–112 guardianship
+of the jurist; Art. 12 official religion Twelver Ja'fari Islam; Art. 13
+recognises Zoroastrians, Jews, Christians (not Baha'is). Guardian
+Council vets candidates.</td>
+</tr>
+<tr class="odd">
+<td><strong>Economic model and outcomes</strong></td>
+<td><span class="tag tag-interp">INTERP: DE</span> Oil rentier economy with large
+<em>bonyad</em> (parastatal foundation) and Revolutionary Guard business
+sectors; sanctions; high inflation (often 30–40%+); brain drain. HDI
+relatively high due to pre-revolution and post-revolution investments in
+health and female education (female literacy and tertiary enrolment rose
+strongly).</td>
+</tr>
+<tr class="even">
+<td><strong>Minorities and dissent</strong></td>
+<td><span class="tag tag-fact">FACT</span> Systematic persecution of Baha'is
+(documented by UN Special Rapporteurs since 1980s). Death of Mahsa
+(Jina) Amini in morality-police custody, Sept 2022, and the "Woman,
+Life, Freedom" protests; UN Independent International Fact-Finding
+Mission (report March 2024) found serious violations, some amounting to
+crimes against humanity. Iran among the world's highest executioners per
+Amnesty International annual reports.</td>
+</tr>
+<tr class="odd">
+<td><strong>Lessons for Bangladesh</strong></td>
+<td><strong>Positive:</strong> investment in rural health (the "health
+house" primary-care network) and female education produced large
+human-development gains. <strong>Negative:</strong> clerical-state
+fusion is Hallaq's "impossible state" in practice: religion loses
+legitimacy among the young when enforced by the state (survey evidence
+of declining religiosity: GAMAAN survey 2020 <span class="verify">VERIFY methodology</span>).</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="43-muslim-majority-comparisons">4.3 Muslim-majority
+comparisons</h3>
+<h4 id="malaysia">Malaysia</h4>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Aspect</th>
+<th>Content</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Founding narrative and key texts</strong></td>
+<td><span class="tag tag-fact">FACT</span> <em>Ketuanan Melayu</em> (Malay primacy).
+Mahathir Mohamad, <em>The Malay Dilemma</em> (1970). <em>Rukun
+Negara</em> (1970), five national principles adopted after the 13 May
+1969 riots. Anwar Ibrahim's <em>Islam Hadhari</em> precursor ideas;
+Abdullah Badawi's <em>Islam Hadhari</em> (2004); Anwar's <em>SCRIPT:
+Malaysia MADANI</em> (2022) <span class="verify">VERIFY title</span>.</td>
+</tr>
+<tr class="even">
+<td><strong>Institutional translation</strong></td>
+<td><span class="tag tag-fact">FACT</span> Federal Constitution: Art. 3 Islam is the
+religion of the Federation, other religions may be practised in peace;
+Art. 153 special position of Malays and natives of Sabah and Sarawak
+(quotas in civil service, scholarships, permits); Art. 160 defines a
+"Malay" as one who professes Islam, habitually speaks Malay and conforms
+to Malay custom. Dual legal system (civil and shari'a courts for
+Muslims).</td>
+</tr>
+<tr class="odd">
+<td><strong>Economic model and outcomes</strong></td>
+<td><span class="tag tag-fact">FACT</span> New Economic Policy (1971–1990): eradicate
+poverty and "restructure society" to eliminate identification of race
+with economic function. Bumiputera equity target 30%. Electronics
+export-led industrialisation (Penang FTZ, 1972). Poverty fell from about
+49% (1970) to under 5% (late 1990s) on official measures <span class="verify">VERIFY</span>.
+Islamic finance: Malaysia is a global leader (Islamic Banking Act 1983;
+dual banking system; sukuk market).</td>
+</tr>
+<tr class="even">
+<td><strong>Minorities and dissent</strong></td>
+<td><span class="tag tag-interp">INTERP: CP, CL</span> Affirmative action for a majority
+produced rent-seeking and cronyism (<em>Ali Baba</em> arrangements),
+Chinese and Indian emigration and resentment. 1MDB scandal (former PM
+Najib Razak convicted 2020; imprisoned 2022). Apostasy effectively
+impossible for Malays; conversion disputes over children (<em>Indira
+Gandhi v Pengarah Jabatan Agama Islam Perak</em>, Federal Court
+2018).</td>
+</tr>
+<tr class="odd">
+<td><strong>Lessons for Bangladesh</strong></td>
+<td><strong>Positive (strongest of any case):</strong> an
+ethno-religious majority nationalism combined with export
+industrialisation, a world-class Islamic-finance ecosystem and broad
+poverty reduction. <strong>Negative:</strong> majority-based preferences
+ossified into permanent entitlement; brain drain of minorities; Islam
+made part of <em>ethnic</em> legal identity (Art. 160) entangles
+religion and race. <span class="tag tag-norm">NORM, DE</span> Copy the industrial and
+Islamic-finance institutions, not Art. 153/160.</td>
+</tr>
+</tbody>
+</table></div>
+<h4 id="indonesia-pancasila">Indonesia (Pancasila)</h4>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Aspect</th>
+<th>Content</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Founding narrative and key texts</strong></td>
+<td><span class="tag tag-fact">FACT</span> Sukarno's speech of 1 June 1945 introducing
+<em>Pancasila</em>: belief in One God, just and civilized humanity,
+unity of Indonesia, democracy through deliberation, social justice. The
+"Jakarta Charter" (22 June 1945) included seven words obliging Muslims
+to observe shari'a; they were dropped on 18 August 1945, in part to keep
+eastern Christian regions in the republic. National motto <em>Bhinneka
+Tunggal Ika</em> ("Unity in diversity"). Nahdlatul Ulama's <em>Islam
+Nusantara</em> concept (2015 congress).</td>
+</tr>
+<tr class="even">
+<td><strong>Institutional translation</strong></td>
+<td><span class="tag tag-fact">FACT</span> Six officially recognised religions (Islam,
+Protestantism, Catholicism, Hinduism, Buddhism, Confucianism). Bahasa
+Indonesia (a Malay variety, not Javanese, the majority language) chosen
+as national language in the 1928 Youth Pledge. Aceh has special autonomy
+with shari'a by-laws (since 2001/2006). 1965 Blasphemy Law (upheld by
+Constitutional Court 2010).</td>
+</tr>
+<tr class="odd">
+<td><strong>Economic model and outcomes</strong></td>
+<td><span class="tag tag-interp">INTERP: DE</span> Suharto's "New Order" (1966–98):
+technocratic macro management ("Berkeley mafia"), Green Revolution rice
+self-sufficiency (1984), labour-intensive manufacturing; crushed by the
+1997–98 Asian financial crisis. Post-1998 democratic decentralisation;
+steady ~5% growth; nickel "downstreaming" export ban (2020) to build
+battery supply chains.</td>
+</tr>
+<tr class="even">
+<td><strong>Minorities and dissent</strong></td>
+<td><span class="tag tag-fact">FACT</span> Mass killings of 1965–66 (estimates 500,000
+to 1 million). Jakarta governor Basuki Tjahaja Purnama ("Ahok")
+convicted of blasphemy (May 2017). Attacks on Ahmadiyah (Cikeusik, Feb
+2011). Papua conflict.</td>
+</tr>
+<tr class="odd">
+<td><strong>Lessons for Bangladesh</strong></td>
+<td><strong>Positive (most relevant model):</strong> Pancasila is a
+<em>civic-theistic</em> formula that affirms God without privileging one
+religion; mass Muslim organisations (NU, Muhammadiyah) act as pluralist
+civil society buffers; national language chosen to be inclusive.
+<strong>Negative:</strong> Pancasila was used by Suharto as an
+instrument of authoritarian conformity (P4 indoctrination courses);
+blasphemy laws still harm minorities.</td>
+</tr>
+</tbody>
+</table></div>
+<h4 id="pakistan">Pakistan</h4>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Aspect</th>
+<th>Content</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Founding narrative and key texts</strong></td>
+<td><span class="tag tag-fact">FACT</span> Two-nation theory; Jinnah's Lahore address
+(22 March 1940) describing Hindus and Muslims as "two different
+religious philosophies, social customs, literatures". Jinnah's 11 Aug
+1947 speech to the Constituent Assembly ("You are free to go to your
+temples..."). Objectives Resolution (12 March 1949): sovereignty belongs
+to Allah.</td>
+</tr>
+<tr class="even">
+<td><strong>Institutional translation</strong></td>
+<td><span class="tag tag-fact">FACT</span> Constitutions 1956, 1962, 1973; Second
+Amendment (1974) declared Ahmadis non-Muslim; Ordinance XX (1984)
+criminalised Ahmadis "posing as Muslims"; blasphemy laws (Penal Code
+295-B 1982, 295-C 1986); Federal Shariat Court (1980). Urdu imposed as
+national language.</td>
+</tr>
+<tr class="odd">
+<td><strong>Economic model and outcomes</strong></td>
+<td><span class="tag tag-interp">INTERP: DE</span> Growth in the 1960s (Ayub's "Decade of
+Development") was concentrated in West Pakistan; the "22 families"
+concentration; East Pakistan's jute exports financed West Pakistan's
+industrialisation (see Rehman Sobhan's and the 1960s "two-economy"
+arguments). Chronic low investment, low tax-to-GDP (~9–10%), military
+business conglomerates (Ayesha Siddiqa, <em>Military Inc.: Inside
+Pakistan's Military Economy</em>, Pluto Press, 2007).</td>
+</tr>
+<tr class="even">
+<td><strong>Minorities and dissent</strong></td>
+<td><span class="tag tag-fact">FACT</span> 1971 genocide in East Pakistan (Bangladeshi
+estimates of deaths as high as 3 million; scholarly estimates range
+widely <span class="verify">VERIFY ranges and sources</span>). Blasphemy lynchings (e.g.,
+Jaranwala church attacks, Aug 2023). Ahmadi persecution.</td>
+</tr>
+<tr class="odd">
+<td><strong>Lessons for Bangladesh</strong></td>
+<td><strong>Negative (most direct):</strong> a Muslim nationhood defined
+by religion did not prevent ethnic-linguistic domination of Bengalis by
+a Punjabi-Urdu elite. <strong>This is the defining historical
+objection</strong>: religion-based nationhood failed Bengal once.
+<strong>Positive:</strong> almost none on the frame, though Pakistan's
+experience shows the need to keep the military out of economic
+rent.</td>
+</tr>
+</tbody>
+</table></div>
+<h4 id="egypt">Egypt</h4>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Aspect</th>
+<th>Content</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Founding narrative and key texts</strong></td>
+<td><span class="tag tag-fact">FACT</span> Layered identities: Pharaonic (Taha Hussein,
+<em>The Future of Culture in Egypt</em>, 1938), Arab (Nasser, <em>The
+Philosophy of the Revolution</em>, 1954, with its "three circles": Arab,
+African, Islamic), Islamic (Hassan al-Banna's Muslim Brotherhood, 1928;
+Sayyid Qutb, <em>Milestones</em>, 1964).</td>
+</tr>
+<tr class="even">
+<td><strong>Institutional translation</strong></td>
+<td><span class="tag tag-fact">FACT</span> Art. 2 (1971, amended 1980; retained in 2014
+Constitution): Islam the state religion, principles of shari'a the
+principal source of legislation. Al-Azhar's constitutional role.
+Military-dominated state since 1952, except 2012–13 (Morsi).</td>
+</tr>
+<tr class="odd">
+<td><strong>Economic model and outcomes</strong></td>
+<td><span class="tag tag-interp">INTERP: DE</span> Nasserist state capitalism; Sadat's
+<em>infitah</em> (1974); military business empire; megaprojects (New
+Administrative Capital); repeated FX crises; IMF programmes 2016 and
+2022 (expanded 2024). Large debt-service burden.</td>
+</tr>
+<tr class="even">
+<td><strong>Minorities and dissent</strong></td>
+<td><span class="tag tag-fact">FACT</span> Rabaa al-Adawiya dispersal, 14 Aug 2013:
+Human Rights Watch, <em>All According to Plan</em> (Aug 2014),
+documented at least 817 killed. Recurring attacks on Copts (e.g., Palm
+Sunday church bombings, April 2017). Tens of thousands of political
+detainees <span class="tag tag-interp">INTERP: HRW/Amnesty estimates; VERIFY</span>.</td>
+</tr>
+<tr class="odd">
+<td><strong>Lessons for Bangladesh</strong></td>
+<td><strong>Negative:</strong> competition over who owns "Islam" (state,
+Al-Azhar, Brotherhood, Salafis) produced polarisation, coups and
+repression. Article 2-type clauses generate permanent litigation over
+what is "Islamic". <strong>Positive:</strong> Al-Azhar shows an
+independent, scholarly religious institution can be a moderating
+national asset if it is not captured.</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="44-cross-case-synthesis">4.4 Cross-case synthesis</h3>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Pattern</th>
+<th>Cases</th>
+<th>Grade</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Civilizational rhetoric does not cause growth; growth comes from
+export industrialisation, education, land reform, macro discipline</td>
+<td>China, Malaysia succeed; Russia, Iran, Pakistan, Egypt struggle</td>
+<td><strong class="grade grade-strong">Strong</strong></td>
+</tr>
+<tr class="even">
+<td>Civilizational nationalism tends to coincide with weakening checks
+on executive power</td>
+<td>China, Russia, Turkey, India (contested), Iran</td>
+<td><strong class="grade grade-moderate">Moderate</strong> (correlation; direction disputed; India is
+contested)</td>
+</tr>
+<tr class="odd">
+<td>Majority-defined religious nationhood produced violence or legal
+subordination of minorities in most cases</td>
+<td>Pakistan, India, Iran, Malaysia (legal), Egypt</td>
+<td><strong class="grade grade-strong">Strong</strong> for legal subordination;
+<strong class="grade grade-moderate">Moderate</strong> for violence</td>
+</tr>
+<tr class="even">
+<td>Civic-theistic formulas (Pancasila) are the best Muslim-majority
+precedent for combining faith-affirmation with pluralism</td>
+<td>Indonesia</td>
+<td><strong class="grade grade-moderate">Moderate</strong> (still imperfect)</td>
+</tr>
+<tr class="odd">
+<td>A religion-based nationhood once failed the Bengal delta itself</td>
+<td>Pakistan 1947–71</td>
+<td><strong class="grade grade-strong">Strong</strong></td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Dissent (IT):</strong> "The cases are biased toward strong,
+centralised states. Small and middle states (Malaysia, Indonesia) with
+Islam as a civilizational reference did better than large ones claiming
+civilizational destiny. Bangladesh is a large-population,
+small-territory middle power. It should look south-east, not north and
+west."</p>
+<hr />
+<h2 id="phase-5-applying-the-concept-to-bengal-and-bangladesh"><span class="phase-no">Phase 5</span>Applying the concept to Bengal and Bangladesh</h2>
+<h3 id="51-civilizational-depth">5.1 Civilizational depth</h3>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Period</th>
+<th>Key facts</th>
+<th>Interpretive stakes</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Pala dynasty (c. 750–1160s)</strong></td>
+<td><span class="tag tag-fact">FACT</span> Buddhist kings (Gopala, Dharmapala,
+Devapala) ruled Bengal and Bihar; patronised Nalanda and founded
+Vikramashila; Somapura Mahavihara at Paharpur (Naogaon), built under
+Dharmapala, is a UNESCO World Heritage Site (1985). Charyapada (c.
+8th–12th c.), Buddhist Sahajiya songs, are considered the earliest
+specimens of Bengali/proto-Bengali literature.</td>
+<td><span class="tag tag-interp">INTERP: HB</span> The delta's first great regional state
+was Buddhist and cosmopolitan (linked to Tibet, Southeast Asia,
+Srivijaya). A Bangladeshi civilizational story that begins in 1204
+throws away this layer; one that includes it gives Buddhists (including
+CHT Buddhists) an ancestral stake.</td>
+</tr>
+<tr class="even">
+<td><strong>Sena dynasty (c. 1070s–1204/1230s)</strong></td>
+<td><span class="tag tag-fact">FACT</span> Brahmanical Hindu dynasty from Karnataka;
+Ballal Sena and Lakshman Sena; associated with Sanskrit learning
+(Jayadeva's <em>Gita Govinda</em>). Muhammad Bakhtiyar Khalji took Nadia
+c. 1204.</td>
+<td><span class="tag tag-interp">INTERP: Eaton, <em>Rise of Islam</em>, ch. 1</span>
+Brahmanical social structure was weaker in the east of the delta. Older
+nationalist narratives that the "oppressed lower castes converted en
+masse to escape Sena caste tyranny" (the "social liberation" thesis) are
+criticised by Eaton as lacking evidence (see below).</td>
+</tr>
+<tr class="odd">
+<td><strong>Bengal Sultanate (1352–1576)</strong></td>
+<td><span class="tag tag-fact">FACT</span> Shamsuddin Ilyas Shah unified Lakhnauti,
+Satgaon and Sonargaon c. 1352; title <em>Shah-i-Bangala</em> /
+<em>Sultan-i-Bangala</em> appears in sources. Adina Mosque, Pandua
+(built by Sikandar Shah, 1373–75), one of the largest mosques in the
+subcontinent. Mosque City of Bagerhat associated with Khan Jahan Ali
+(15th c.), UNESCO 1985. Alauddin Husain Shah (r. 1494–1519) patronised
+Bengali literature, including translations of the <em>Mahabharata</em>
+(Kavindra Parameshvara) under his general Paragal Khan <span class="verify">VERIFY patron
+details</span>. Contacts with Ming China (Zheng He's fleets visited Bengal; a
+giraffe sent to the Yongle court in 1414). Ended with Mughal victory at
+Rajmahal, 1576.</td>
+<td><span class="tag tag-interp">INTERP: HB, majority view</span> This is the strongest
+evidence for a <em>distinct</em> polity in the delta: an independent
+sultanate for over two centuries, with its own architecture (terracotta
+brick, curved <em>chala</em> roofline adapted from Bengali huts),
+coinage and literary patronage, <em>and</em> recognition by foreign
+powers. <span class="tag tag-interp">INTERP: HB, minority</span> But the Sultanate's
+elite was largely of Turkish, Afghan, Persian and Abyssinian origin (the
+Habshi period, 1487–1493); it was a Persianate court ruling a
+Bengali-speaking peasantry. It is a <em>precursor</em>, not a
+nation.</td>
+</tr>
+<tr class="even">
+<td><strong>Mughal <em>subah</em> (1576/1612–1717; Nawabi era to
+1757)</strong></td>
+<td><span class="tag tag-fact">FACT</span> Islam Khan made Dhaka (Jahangirnagar) the
+provincial capital in 1610. Murshid Quli Khan moved the capital to
+Murshidabad (c. 1704/1717). Bengal was among the empire's richest
+provinces (muslin, silk, saltpetre, rice). Battle of Plassey, 1757;
+Diwani granted to the East India Company, 1765. Famine of 1770.</td>
+<td><span class="tag tag-interp">INTERP: Eaton</span> The Mughal period, not the
+Sultanate, is when mass Islamisation of the eastern delta took place,
+through the agrarian frontier.</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="52-eatons-bengal-frontier-thesis">5.2 Eaton's "Bengal frontier"
+thesis</h3>
+<p><span class="tag tag-fact">FACT</span> Richard M. Eaton, <em>The Rise of Islam and
+the Bengal Frontier, 1204–1760</em> (University of California Press,
+1993). Key elements:</p>
+<ol type="1">
+<li><strong>The puzzle.</strong> The 1872 census showed a Muslim
+<em>majority</em> in eastern Bengal, far from the north Indian centres
+of Muslim power, which surprised British officials (H. Beverley's census
+report).</li>
+<li><strong>Rejected theories (ch. 5).</strong> Eaton rejects (a)
+conversion by the sword (no evidence; the most Islamised zone was
+furthest from the capitals), (b) immigration (cannot account for the
+numbers), (c) patronage (conversion strongest where state presence was
+weakest), and (d) "religion of social liberation" from caste (east
+Bengal populations were not well integrated into Brahmanical caste
+society in the first place).</li>
+<li><strong>His thesis.</strong> As the active delta shifted east
+(rivers changed course in the 16th century), Mughal-era grants of forest
+land were given to pioneers, often <em>pirs</em> and mosque-builders,
+who led communities in clearing jungle and growing wet rice. Islam
+spread as a religion of the agrarian frontier, associated with
+civilisation-building itself (clearing forest, founding villages,
+cultivating rice).</li>
+<li><strong>Gradual process.</strong> Conversion was slow:
+<em>inclusion</em> (Allah and Islamic figures added to local pantheons),
+<em>identification</em> (Islamic names merged with local deities),
+<em>displacement</em> (exclusive Islamic identity), with the last stage
+largely in the 19th–20th centuries under reformist movements.</li>
+</ol>
+<p><span class="tag tag-interp">INTERP: panel</span></p>
+<ul>
+<li><strong>HB:</strong> "Eaton's thesis is the single most important
+scholarly resource for a Bangladeshi civilizational narrative: Islam in
+the delta is <em>indigenous</em>, a peasant civilisational project, not
+a foreign implant. Grade: <strong class="grade grade-strong">Strong</strong> as the leading
+scholarly account, though it is debated."</li>
+<li><strong>IT:</strong> "It also cuts against Islamist purism: the
+'pure' Islam of reform movements came <em>late</em>; for most of the
+history, Bengali Islam was syncretic. So which Islam is the civilization
+built on?"</li>
+<li><strong>HB (critics of Eaton):</strong> Some scholars argue the
+frontier thesis overstates ecology and understates Sufi networks,
+earlier pre-Mughal conversion and coastal trade (Arab and Persian
+merchant links to Chittagong). See critiques in reviews and later work;
+e.g., Asim Roy's emphasis on cultural mediation <span class="verify">VERIFY specific
+critical reviews</span>. Grade on the full thesis:
+<strong class="grade grade-moderate">Moderate</strong>.</li>
+</ul>
+<h3 id="53-the-bengali-muslim-literary-and-sufi-synthesis">5.3 The
+Bengali-Muslim literary and Sufi synthesis</h3>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Element</th>
+<th>Key evidence</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Early Bengali Muslim poets</strong></td>
+<td><span class="tag tag-fact">FACT</span> Shah Muhammad Sagir, <em>Yusuf-Zulekha</em>
+(late 14th or early 15th c. <span class="verify">VERIFY dating</span>); Syed Sultan,
+<em>Nabi-Bamsha</em> (16th c.), a Bengali verse narrative of prophets
+that integrates Hindu deities into a prophetic lineage; Alaol (c.
+1607–1680), <em>Padmavati</em>, composed at the Arakanese (Mrauk-U)
+court; Daulat Qazi, <em>Sati Mayna o Lor-Chandrani</em>.</td>
+</tr>
+<tr class="even">
+<td><strong>The "mother tongue" defence</strong></td>
+<td><span class="tag tag-fact">FACT</span> Abdul Hakim (17th c.), in <em>Nurnama</em>:
+"<em>Je sab Bange te janmi hingse Bangabani / Se sab kahar janma nirnay
+na jani</em>" (Those who are born in Bengal yet despise the Bengali
+tongue, I cannot tell of whose lineage they are born) <span class="verify">VERIFY exact
+transliteration</span>. <span class="tag tag-interp">INTERP: HB</span> The single most quoted
+pre-modern statement of Bengali-Muslim linguistic identity; it shows
+that the Bengali-vs-Arabic/Persian tension is old, and that a Muslim
+poet resolved it in favour of Bengali.</td>
+</tr>
+<tr class="odd">
+<td><strong>Sufi and popular synthesis</strong></td>
+<td><span class="tag tag-fact">FACT</span> Shah Jalal of Sylhet (d. 1346; visited by
+Ibn Battuta). Pir and <em>pirani</em> cults; Satya Pir / Satyanarayan
+veneration shared by Muslims and Hindus. Baul tradition; Lalon Fakir (c.
+1774–1890). Tony K. Stewart, <em>Witness to Marvels: Sufism and Literary
+Imagination</em> (University of California Press, 2019), on Bengali pir
+narratives. Asim Roy, <em>The Islamic Syncretistic Tradition in
+Bengal</em> (Princeton University Press, 1983).</td>
+</tr>
+<tr class="even">
+<td><strong>Modern synthesis</strong></td>
+<td><span class="tag tag-fact">FACT</span> Kazi Nazrul Islam (1899–1976), national
+poet: wrote both Islamic songs (<em>ghazal</em>, "<em>O mon Ramzaner oi
+rozar sheshe</em>") and <em>shyama sangeet</em> (devotional songs to
+Kali). Begum Rokeya Sakhawat Hossain (1880–1932), <em>Sultana's
+Dream</em> (1905): Muslim feminist reformer. Jasimuddin, Jibanananda Das
+(Hindu-born poet of the Bengal landscape: <em>Rupashi Bangla</em>).</td>
+</tr>
+</tbody>
+</table></div>
+<p><span class="tag tag-interp">INTERP: Asim Roy vs. Rafiuddin Ahmed</span> Roy reads
+Bengali Islam as a <em>syncretistic</em> tradition produced by "cultural
+mediators" who translated Islam into Bengali idioms. Rafiuddin Ahmed,
+<em>The Bengal Muslims 1871–1906: A Quest for Identity</em> (Oxford
+University Press, Delhi, 1981; 2nd ed. 1988) shows how 19th-century
+reformers (Faraizi, Tariqah-i-Muhammadiya) and the colonial census
+pushed Bengali Muslims toward a more exclusive, scripturalist Islamic
+identity, while the <em>ashraf</em> elite looked to Urdu and north
+India. <strong>The panel agrees</strong> the identity question (Bengali
+first or Muslim first?) was produced in the 19th century and never
+closed. <strong>Grade: Strong.</strong></p>
+<h3 id="54-the-colonial-identity-quest">5.4 The colonial identity
+quest</h3>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Event</th>
+<th>Facts</th>
+<th>Significance</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Faraizi movement</strong></td>
+<td><span class="tag tag-fact">FACT</span> Founded by Haji Shariatullah (1781–1840)
+after years in Mecca; enforced the <em>fara'iz</em> (obligatory duties),
+condemned syncretic practices; his son Dudu Miyan (1819–1862) organised
+peasants against Hindu zamindars and indigo planters. Titu Mir (Mir
+Nisar Ali) and his bamboo fort at Narkelberia, 1831.</td>
+<td><span class="tag tag-interp">INTERP: HB</span> Simultaneously religious purification
+<em>and</em> agrarian class struggle. Islamists claim it as revivalism;
+Marxists as peasant resistance. Both are right. It seeded the fusion of
+"Muslim" and "peasant" in East Bengali political identity.</td>
+</tr>
+<tr class="even">
+<td><strong>1905 Partition of Bengal</strong></td>
+<td><span class="tag tag-fact">FACT</span> Curzon created "Eastern Bengal and Assam"
+with Dhaka as capital (Oct 1905); fierce Swadeshi agitation in Calcutta;
+annulled 1911; Delhi became imperial capital. Rabindranath Tagore wrote
+"<em>Amar Sonar Bangla</em>" (1905) during the anti-partition
+movement.</td>
+<td><span class="tag tag-interp">INTERP: HB</span> East Bengali Muslims gained (Dhaka
+revived, education) from partition; Hindu elites saw it as divide and
+rule. The Bangladeshi national anthem is a 1905 <em>anti-partition</em>
+song by a Hindu poet: a living symbol of the synthesis, and of its
+paradoxes.</td>
+</tr>
+<tr class="odd">
+<td><strong>1906 All-India Muslim League</strong></td>
+<td><span class="tag tag-fact">FACT</span> Founded in Dhaka, 30 Dec 1906, at a session
+hosted by Nawab Khwaja Salimullah during the All-India Muhammadan
+Educational Conference.</td>
+<td>Dhaka as a birthplace of organised Muslim politics in South
+Asia.</td>
+</tr>
+<tr class="even">
+<td><strong>1940 Lahore Resolution</strong></td>
+<td><span class="tag tag-fact">FACT</span> Moved on 23 March 1940 by A. K. Fazlul Huq,
+Premier of Bengal. Its operative paragraph demanded that areas in which
+Muslims are numerically in a majority, as in the north-western and
+eastern zones, "should be grouped to constitute 'Independent States' in
+which the constituent units shall be autonomous and sovereign".
+<span class="tag tag-fact">FACT</span> The Delhi Convention of Muslim League
+legislators (April 1946) adopted a resolution, moved by H. S.
+Suhrawardy, calling for "a sovereign independent State".</td>
+<td><span class="tag tag-interp">INTERP: HB, and Bangladeshi nationalist
+historiography</span> The plural "States" is read by many
+Bangladeshis as legitimising a separate eastern state: 1971 fulfilled
+1940. <span class="tag tag-interp">INTERP: dissent, HB</span> Jinnah and the League
+leadership later said "States" was a drafting slip <span class="verify">VERIFY</span>; the clause
+is ambiguous. Grade for the "two-states" reading:
+<strong>Moderate.</strong></td>
+</tr>
+<tr class="odd">
+<td><strong>United Bengal proposal, 1947</strong></td>
+<td><span class="tag tag-fact">FACT</span> Suhrawardy, Abul Hashim and Sarat Chandra
+Bose proposed an independent, undivided sovereign Bengal (April–May
+1947); rejected by Congress and Hindu Mahasabha leaders and not
+supported by the League high command.</td>
+<td><span class="tag tag-interp">INTERP: PT</span> Evidence that a <em>Bengal-wide</em>,
+cross-communal sovereign nationhood was imaginable as late as 1947.</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="55-turning-points">5.5 Turning points</h3>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Year</th>
+<th>Event</th>
+<th>Meaning for the frame</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>1947</strong></td>
+<td>Partition; East Bengal joins Pakistan; large Hindu out-migration
+over the following decades</td>
+<td><span class="tag tag-interp">INTERP</span> Muslim identity wins over Bengali
+territorial unity.</td>
+</tr>
+<tr class="even">
+<td><strong>1948, 1952</strong></td>
+<td><span class="tag tag-fact">FACT</span> Jinnah declares Urdu alone the state
+language (Dhaka, 21 March 1948). Police fire on students, 21 February
+1952 (Salam, Barkat, Rafiq, Jabbar and others killed). UNESCO proclaimed
+21 February International Mother Language Day (1999).</td>
+<td><span class="tag tag-interp">INTERP: HB</span> The Bengali language becomes sacred
+political ground. Muslim identity alone could not justify linguistic
+subordination.</td>
+</tr>
+<tr class="odd">
+<td><strong>1971</strong></td>
+<td><span class="tag tag-fact">FACT</span> Six-Point Programme (1966); Awami League
+wins 167 of 169 East Pakistan seats (Dec 1970); Operation Searchlight
+(25 March 1971); Liberation War; surrender of Pakistani forces, 16 Dec
+1971.</td>
+<td><span class="tag tag-interp">INTERP, contested</span> Secular nationalists: 1971 was
+the defeat of religion-based nationhood. Others: it was the defeat of
+<em>Pakistani</em> domination, not of Islam; Bengali Muslims fought for
+dignity, and the 1971 Proclamation of Independence (10 April 1971)
+speaks of "equality, human dignity and social justice", not secularism.
+<span class="tag tag-fact">FACT</span> The Proclamation of Independence does not
+mention secularism; secularism was added in the 1972 Constitution.</td>
+</tr>
+<tr class="even">
+<td><strong>1972 Constitution</strong></td>
+<td><span class="tag tag-fact">FACT</span> Four fundamental principles (Art. 8):
+nationalism, socialism, democracy and secularism. Art. 9 grounds
+nationalism in Bengali language and culture. Art. 6 (original): citizens
+to be known as "Bangalees". <span class="tag tag-fact">FACT</span> M. N. Larma (Chakma
+MP) objected in the Constituent Assembly that non-Bengali peoples could
+not be called Bengali. Art. 38 banned religion-based parties.</td>
+<td>The founding of <em>Bengali</em> (linguistic-ethnic) nationalism as
+a constitutional norm, and the founding grievance of the Adivasi
+peoples.</td>
+</tr>
+<tr class="odd">
+<td><strong>1975</strong></td>
+<td><span class="tag tag-fact">FACT</span> One-party BAKSAL (Jan 1975); assassination
+of Sheikh Mujibur Rahman and family (15 Aug 1975); coups and
+counter-coups (Nov 1975).</td>
+<td>Collapse of the 1972 settlement.</td>
+</tr>
+<tr class="even">
+<td><strong>1977–79 (Zia)</strong></td>
+<td><span class="tag tag-fact">FACT</span> Proclamations Order removed "secularism",
+inserted "absolute trust and faith in the Almighty Allah" and
+"Bismillah-ar-Rahman-ar-Rahim"; Art. 6 changed to "Bangladeshis"; ban on
+religious parties lifted; Fifth Amendment (1979) ratified. Ziaur
+Rahman's "Bangladeshi nationalism": territory-based, inclusive of
+non-Bengalis, with Islam as a component of culture.</td>
+<td><span class="tag tag-interp">INTERP: PT</span> The first state-level attempt at
+something like "Bangladeshi civilizational nationalism": territorial,
+religion-inflected, distinct from West Bengal.</td>
+</tr>
+<tr class="odd">
+<td><strong>1988</strong></td>
+<td><span class="tag tag-fact">FACT</span> Eighth Amendment (Ershad) made Islam the
+state religion (Art. 2A).</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><strong>1990</strong></td>
+<td><span class="tag tag-fact">FACT</span> Mass uprising ends Ershad's rule (6 Dec
+1990); parliamentary democracy restored (1991, Twelfth Amendment).</td>
+<td>Pattern: authoritarian regimes using religion lose legitimacy to
+mass movements.</td>
+</tr>
+<tr class="odd">
+<td><strong>2010–11</strong></td>
+<td><span class="tag tag-fact">FACT</span> Supreme Court (Appellate Division) upheld
+the High Court's annulment of the Fifth Amendment (2010). Fifteenth
+Amendment (2011) restored secularism <em>and</em> retained Islam as
+state religion and Bismillah; Art. 6(2): "The people of Bangladesh shall
+be known as Bangalees as a nation and the citizens of Bangladesh shall
+be known as Bangladeshis"; abolished the caretaker government.</td>
+<td><span class="tag tag-interp">INTERP: CL</span> A deliberately contradictory
+compromise: secular state with a state religion; ethnic "Bangalee"
+nation with civic "Bangladeshi" citizens.</td>
+</tr>
+<tr class="even">
+<td><strong>2024</strong></td>
+<td><span class="tag tag-fact">FACT</span> Student-led quota-reform protests escalated
+into a mass uprising (July–August 2024); Sheikh Hasina resigned and left
+for India on 5 August 2024; interim government under Muhammad Yunus
+sworn in on 8 August 2024. OHCHR fact-finding report (Feb 2025)
+estimated as many as 1,400 people may have been killed between 15 July
+and 5 August 2024 <span class="verify">VERIFY figure</span>.</td>
+<td><span class="tag tag-interp">INTERP: PT</span> Opened a constitutional moment.
+<span class="tag tag-fact">FACT, VERIFY</span> The Constitution Reform Commission
+(chaired by Ali Riaz) recommended in January 2025 replacing the four
+1972 principles with equality, human dignity, social justice, pluralism
+and democracy. The "July National Charter" was signed by many parties in
+October 2025 <span class="verify">VERIFY</span>. National election held in February 2026 <span class="verify">VERIFY:
+BNP-led government formed</span>.</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="56-the-bengali-vs-bangladeshi-nationalism-debate">5.6 The
+Bengali vs Bangladeshi nationalism debate</h3>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th></th>
+<th><strong>Bengali nationalism (<em>Bangali
+jatiyatabad</em>)</strong></th>
+<th><strong>Bangladeshi nationalism (<em>Bangladeshi
+jatiyatabad</em>)</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Associated with</td>
+<td>Awami League; the 1972 Constitution; Sheikh Mujibur Rahman</td>
+<td>BNP; Ziaur Rahman; the 1977–79 amendments</td>
+</tr>
+<tr class="even">
+<td>Basis</td>
+<td>Language, culture, the 1952 and 1971 struggles</td>
+<td>Territory, citizenship, history of the delta, with Islam as a
+cultural component; distinct from West Bengal</td>
+</tr>
+<tr class="odd">
+<td>Strength</td>
+<td>Rooted in the language movement and the Liberation War; inclusive of
+Bengali Hindus</td>
+<td>Inclusive of non-Bengali citizens (Adivasis, Urdu-speakers) in
+principle; distinguishes Bangladesh from Indian Bengal</td>
+</tr>
+<tr class="even">
+<td>Weakness</td>
+<td>Excludes non-Bengali peoples (CHT, Garo, Santal); risks cultural
+absorption into a pan-Bengali sphere dominated by Kolkata</td>
+<td>Can slide into religious majoritarianism; historically associated
+with military regimes and with rehabilitating 1971 collaborators</td>
+</tr>
+<tr class="odd">
+<td>Key texts</td>
+<td>1972 Constitution, Arts. 6, 9; Mujib's <em>Unfinished Memoirs</em>
+(<em>Oshomapto Atmojiboni</em>, UPL, 2012)</td>
+<td>Ziaur Rahman's 19-point programme (1977); BNP literature <span class="verify">VERIFY
+primary text</span>; Abul Mansur Ahmad's essays on "East Pakistani" (later
+Bangladeshi) culture</td>
+</tr>
+</tbody>
+</table></div>
+<p><span class="tag tag-interp">INTERP: HB</span> Key intellectual contributions to the
+"Bangladeshi" side: Abul Mansur Ahmad (cultural distinctiveness of East
+Bengali Muslims, <em>Amar Dekha Rajnitir Ponchash Bochor</em>, 1968);
+Ahmed Sofa, <em>Bangali Musalmaner Mon</em> (1976/1981), a critical
+study of the Bengali Muslim mind; contemporary thinkers like Farhad
+Mazhar and Salimullah Khan, who are cited in debates on post-colonial
+Bengali Muslim identity [INTERP; check their positions directly].
+Scholarly overviews: Willem van Schendel, <em>A History of
+Bangladesh</em> (Cambridge University Press, 2009; 2nd ed. 2020); Sufia
+M. Uddin, <em>Constructing Bangladesh: Religion, Ethnicity, and Language
+in an Islamic Nation</em> (University of North Carolina Press, 2006);
+Tazeen M. Murshid, <em>The Sacred and the Secular: Bengal Muslim
+Discourses, 1871–1977</em> (Oxford University Press, 1995); Ali Riaz,
+<em>God Willing: The Politics of Islamism in Bangladesh</em> (Rowman
+&amp; Littlefield, 2004).</p>
+<h3 id="57-scoring-bangladesh-against-the-phase-2-criteria">5.7 Scoring
+Bangladesh against the Phase 2 criteria</h3>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Criterion</th>
+<th>Score (0–2)</th>
+<th>Evidence and dispute</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>C1 Historical depth</td>
+<td><strong>2</strong></td>
+<td>Pala → Sultanate → Mughal → modern; continuous literary tradition
+from Charyapada. <strong>Strong.</strong></td>
+</tr>
+<tr class="even">
+<td>C2 Distinctiveness</td>
+<td><strong>1–2</strong></td>
+<td>Distinct from North Indian Islam (language, Sufi-agrarian roots) and
+from Kolkata Hindu-Bengali culture (religion, peasant base, East Bengali
+dialects). But shares language and much literature with West Bengal.
+<strong>Moderate.</strong></td>
+</tr>
+<tr class="odd">
+<td>C3 Mass living continuity</td>
+<td><strong>2</strong></td>
+<td>Bengali language and Islam both lived by the large majority; Pohela
+Boishakh and Eid both mass festivals. <strong>Strong.</strong></td>
+</tr>
+<tr class="even">
+<td>C4 Institutional translation</td>
+<td><strong>1</strong></td>
+<td>State religion, Bismillah, Islamic Foundation, madrasa system (Alia
+and Qawmi); Bengali as sole official language (Art. 3). But no coherent
+<em>civilizational</em> policy. <strong>Moderate.</strong></td>
+</tr>
+<tr class="odd">
+<td>C5 Normative self-understanding</td>
+<td><strong>1</strong></td>
+<td>Contested between Bengali, Bangladeshi and Islamist visions; no
+settled elite consensus. <strong>Moderate.</strong></td>
+</tr>
+<tr class="even">
+<td>C6 Inclusive capacity</td>
+<td><strong>1</strong></td>
+<td>Formal equality (Arts. 27, 28, 41) but documented violence against
+Hindus and Adivasis; vested property dispossession; CHT accord only
+partly implemented. <strong class="grade grade-strong">Strong</strong> evidence of the gap.</td>
+</tr>
+<tr class="odd">
+<td>C7 External recognition/projection</td>
+<td><strong>0–1</strong></td>
+<td>International Mother Language Day is a genuine global contribution;
+garment exports and microfinance (Grameen) are global brands; but
+Bangladesh is not recognised as a civilizational pole.
+<strong>Moderate.</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Total</strong></td>
+<td><strong>8–10 / 14</strong></td>
+<td>A <em>civilizational society</em> more than a <em>civilizational
+state</em>.</td>
+</tr>
+</tbody>
+</table></div>
+<h3
+id="58-strongest-case-that-bangladesh-is-a-distinct-civilizational-unit">5.8
+Strongest case that Bangladesh IS a distinct civilizational unit</h3>
+<p><span class="tag tag-norm">NORM/INTERP: argued by HB-majority and IT, as a
+steelman</span></p>
+<ol type="1">
+<li><strong>A distinct ecology produced a distinct
+civilization.</strong> The active Ganges-Brahmaputra-Meghna delta, with
+its shifting rivers, wet-rice frontier and monsoon, shaped a peasant
+society unlike the Indo-Gangetic plain. Eaton shows Islam became the
+religion of this specific civilising process. That makes Bengali Islam
+<em>indigenous</em>, not imported, and distinct from both North Indian
+Islam and Hindu Bengal.</li>
+<li><strong>Two centuries of independent statehood.</strong> The Bengal
+Sultanate (1352–1576) was a recognised sovereign with its own
+architecture, coinage, diplomacy (Ming China, Timurid and Arab worlds)
+and literary patronage that elevated Bengali.</li>
+<li><strong>Continuous vernacular-Islamic literature.</strong> From
+<em>Yusuf-Zulekha</em> through Alaol, Abdul Hakim, the <em>puthi</em>
+literature, Nazrul and Jasimuddin, a body of Bengali-language Muslim
+literature exists that has no exact parallel elsewhere.</li>
+<li><strong>Repeated self-assertion against both larger
+neighbours.</strong> 1905–11 (against Calcutta-centred Hindu elite
+opposition to an East Bengal province), 1940 (Lahore "States"), 1947 (a
+Muslim-majority eastern state), 1952 and 1971 (against Pakistani-Urdu
+domination), 2024 (against a regime seen as dependent on India). The
+delta's people have repeatedly refused absorption into both Indian and
+Pakistani projects.</li>
+<li><strong>Demographic and linguistic weight.</strong> Some 170+
+million people, about 91% Muslim and over 98% Bengali-speaking (BBS
+Census 2022 <span class="verify">VERIFY language figure</span>), make Bangladesh the world's
+largest Bengali-speaking polity and the largest Muslim-majority
+population with a non-Arabic, non-Persian, non-Urdu literary tradition
+outside Indonesia.</li>
+<li><strong>Global contribution.</strong> The Language Movement gave the
+world International Mother Language Day; Bangladesh gave the world
+large-scale microfinance and NGO-led development (Grameen, BRAC).</li>
+</ol>
+<p><strong>Grade: Moderate.</strong> Each premise is factually
+defensible; the conclusion ("civilizational unit" rather than "regional
+variant") is interpretive.</p>
+<h3
+id="59-strongest-case-that-bangladesh-is-not-a-distinct-civilizational-unit">5.9
+Strongest case that Bangladesh is NOT a distinct civilizational
+unit</h3>
+<p><span class="tag tag-norm">NORM/INTERP: argued by HB-minority, PT, CP</span></p>
+<ol type="1">
+<li><strong>It is a region, not a civilization.</strong> Bengal is a
+region within two larger civilizations: the Indic (language, music,
+food, kinship, caste remnants) and the Islamicate (religion, law,
+Persian loanwords). Calling a region a civilization inflates the
+category; by the same standard Punjab, Kerala and Sindh would be
+civilizations.</li>
+<li><strong>The Bengali half of the synthesis is shared with West
+Bengal.</strong> Rabindranath Tagore, Bankim, Jibanananda, the Bengali
+script, the national anthem and the 1952 cause belong to a language
+community split by a 1947 border. A "Bangladeshi civilization" must
+either claim Tagore (and then it is not distinct from West Bengal) or
+disown him (and then it is impoverished).</li>
+<li><strong>The Muslim half is shared with 1.9 billion people.</strong>
+Its distinctiveness comes from syncretism, which modern reformist Islam
+has spent two centuries removing.</li>
+<li><strong>Discontinuity, not continuity.</strong> Mass Islamisation
+happened mainly in the 16th–19th centuries; the Sultanate elite was
+foreign; the modern identity was produced by the 19th-century census,
+reform movements and 20th-century politics. Civilizational "continuity"
+back to the Palas is a retrospective construction.</li>
+<li><strong>The state's founding is a rejection of religion-based
+nationhood.</strong> 1971 was fought <em>against</em> a state whose
+legitimacy was Muslim nationhood. A Muslim civilizational state
+re-imports the logic of the state Bangladeshis rejected.</li>
+<li><strong>No external recognition.</strong> Neither Huntington, nor
+Therborn, nor any major comparative scholar lists Bangladesh as a
+civilizational state.</li>
+</ol>
+<p><strong>Grade: Moderate.</strong> Points 1, 2 and 5 are the hardest
+for the framework to answer.</p>
+<h3 id="510-panel-verdict-on-phase-5">5.10 Panel verdict on Phase 5</h3>
+<blockquote>
+<p><span class="tag tag-interp">INTERP, majority</span> Bangladesh is best described as
+the <strong>political core of a distinct regional Islamicate
+civilization of the Bengal delta</strong>, sharing its language with a
+larger Bengali world and its faith with the global ummah. It is a
+civilizational <em>society</em> with deep roots; whether it becomes a
+civilizational <em>state</em> is a political choice, not a historical
+fact. <strong>Grade: Moderate.</strong></p>
+<p><strong>[Dissent, PT]</strong> "Regional Islamicate civilization" is
+analytically fine. Adding "nationalism" to it is where danger
+starts.</p>
+<p><strong>[Dissent, IT]</strong> Recognising Bangladesh's Islamic
+civilizational depth is not dangerous; <em>denying</em> it, as
+1972-style secularism tried, produced a backlash that strengthened
+hardline Islamism.</p>
+</blockquote>
+<hr />
+<h2 id="phase-6-steelmanning-the-critics"><span class="phase-no">Phase 6</span>Steelmanning the
+critics</h2>
+<h3 id="a-secular-bengali-nationalism">(a) Secular Bengali
+nationalism</h3>
+<p><strong>Steelman, in its own terms.</strong></p>
+<blockquote>
+<p>"We did not shed blood in 1971 to replace a Pakistani Muslim nation
+with a Bangladeshi Muslim nation. The Pakistan project told us that
+Islam made us one people with Punjabis; then it killed our students for
+speaking Bengali and slaughtered us in 1971 with the help of
+collaborators (Razakars, Al-Badr) who claimed to defend Islam. The
+Language Movement and the Liberation War founded a nation on
+<em>language and culture shared by Muslims, Hindus, Buddhists and
+Christians</em>. The 1972 Constitution's secularism (Art. 12) did not
+mean hostility to religion; it meant ending communalism, state patronage
+of any one religion and the political use of religion. Every time the
+state has re-Islamised (1977, 1988), it has been under military rule.
+'Muslim civilisational nationalism' is the two-nation theory with a new
+label."</p>
+</blockquote>
+<p>Key texts: 1972 Constitution, Arts. 8, 9, 12; Tajuddin Ahmad's and
+Sheikh Mujib's speeches; Anisuzzaman, <em>Muslim Manas o Bangla
+Sahitya</em> (1964) <span class="verify">VERIFY title transliteration</span>; Ahmed Sharif's
+essays.</p>
+<p><strong>What a credible framework must concede or build
+in.</strong></p>
+<ol type="1">
+<li><strong>Concede</strong> that 1971 was, at minimum, a rejection of
+<em>religion as sufficient ground for nationhood</em> and of
+<em>religion as an instrument of ethnic domination</em>.</li>
+<li><strong>Build in</strong> the Language Movement and Liberation War
+as foundational, not subordinate, events, including honest recognition
+of the role of Islamist collaborators in 1971.</li>
+<li><strong>Build in</strong> constitutional non-establishment
+safeguards (no state privileging of one faith in rights) even if Islam's
+cultural primacy is recognised.</li>
+</ol>
+<h3 id="b-liberal-and-human-rights-critiques">(b) Liberal and
+human-rights critiques</h3>
+<p><strong>Steelman.</strong></p>
+<blockquote>
+<p>"Civilizational talk replaces citizens with cultural types. Rights
+belong to persons, not civilizations. Every declared civilizational
+state in Phase 4 has used the concept to exempt itself from universal
+standards ('Western values'), to delegitimise dissent ('foreign agent',
+'anti-national'), and to rank citizens. The burden of proof lies on
+those who would add a civilizational qualifier to a constitution that
+already promises equality (Art. 27) and non-discrimination (Art. 28).
+Bangladesh's own record (enforced disappearances documented by the
+Commission of Inquiry on Enforced Disappearances, 2024–25 <span class="verify">VERIFY</span>, the
+Digital Security Act 2018, attacks on Hindus in Ramu 2012, Comilla 2021)
+shows that the problem is too little liberty, not too little
+civilization."</p>
+</blockquote>
+<p>Key texts: John Rawls, <em>Political Liberalism</em> (Columbia
+University Press, 1993); Amartya Sen, <em>Identity and Violence: The
+Illusion of Destiny</em> (W. W. Norton, 2006), especially his critique
+of "solitarist" identity and civilizational partitioning; ICCPR
+(Bangladesh acceded 2000).</p>
+<p><strong>What a credible framework must concede or build
+in.</strong></p>
+<ol type="1">
+<li><strong>Concede</strong> that universal human rights bind Bangladesh
+(treaty obligations) and that civilizational identity cannot justify
+derogation.</li>
+<li><strong>Build in</strong> a "no-ranking" rule: no legal right,
+office, or benefit may depend on religion or ethnicity. Amartya Sen, a
+Bengali, is the obvious interlocutor: his argument that identities are
+plural and chosen should be engaged, not ignored.</li>
+<li><strong>Build in</strong> independent institutions (judiciary, human
+rights commission, election commission) <em>before</em> expanding
+cultural-identity policy.</li>
+</ol>
+<h3 id="c-islamist-universalism-nationalism-as-jahili-asabiyya">(c)
+Islamist universalism: nationalism as <em>jahili 'asabiyya</em></h3>
+<p><strong>Steelman.</strong></p>
+<blockquote>
+<p>"The Prophet (peace be upon him) said: he is not of us who calls to
+<em>'asabiyya</em>. The ummah is one body; the borders of Bangladesh
+were drawn by Cyril Radcliffe in 1947. Nationalism (<em>qawmiyya,
+wataniyya</em>) is a Western import that broke the Ottoman caliphate and
+divided Muslims into 57 states that cannot defend Gaza or the Rohingya.
+A 'Muslim civilisational nationalism' uses Islam as a decoration for the
+same idolatry of the nation (<em>watan-parasti</em>) that Iqbal
+condemned. Either God's law is sovereign, or the nation is; you cannot
+serve two masters. A Bengali-Muslim identity that celebrates Pohela
+Boishakh's <em>mangal shobhajatra</em> and Baul syncretism alongside
+Islam dilutes <em>tawhid</em>."</p>
+</blockquote>
+<p>Key texts: Maududi on nationalism (see Phase 3); Sayyid Qutb,
+<em>Ma'alim fi al-Tariq</em> (<em>Milestones</em>, 1964); Taqi al-Din
+al-Nabhani (Hizb ut-Tahrir); Abu Dawud hadith on <em>'asabiyya</em>.</p>
+<p><strong>What a credible framework must concede or build
+in.</strong></p>
+<ol type="1">
+<li><strong>Concede</strong> that the ummah is a real moral community
+and that the framework must not make the nation an object of worship or
+an absolute.</li>
+<li><strong>Build in</strong> foreign-policy commitments that give the
+ummah concrete content (Rohingya protection, Palestine, OIC engagement),
+so the national frame serves rather than replaces Muslim
+solidarity.</li>
+<li><strong>Build in</strong> respect for the <em>'ulama'</em> and
+madrasa sector as part of the civilization, including Qawmi madrasa
+recognition (the Dawra-e-Hadith degree was recognised as equivalent to a
+master's in 2018 <span class="tag tag-fact">FACT</span>).</li>
+<li><strong>Answer</strong> (not concede): the hadith condemns
+<em>unjust</em> partisanship; Qur'an 49:13 recognises peoples; the
+Islamic tradition always had particular polities. The framework should
+state clearly that it does <strong>not</strong> claim to be an Islamic
+state in the Maududian sense.</li>
+</ol>
+<h3 id="d-marxist-and-class-critiques-eg-badruddin-umar">(d) Marxist and
+class critiques (e.g., Badruddin Umar)</h3>
+<p><strong>Steelman.</strong></p>
+<blockquote>
+<p>"Every identity project in Bengal has been driven by a class. In 1905
+and 1947, the Muslim <em>jotedar</em> and emerging middle class used
+religion against Hindu landlords and moneylenders; in 1952 and 1971 the
+Bengali petty bourgeoisie used language against the West Pakistani
+bourgeoisie; after 1975 the military-bureaucratic elite and the new
+garment and trading bourgeoisie used Islam for legitimacy.
+'Civilisational nationalism' is the newest ideology of a comprador and
+rent-seeking ruling class: it gives garment workers (mostly young women
+paid among the lowest wages in the world), landless peasants and migrant
+workers pride instead of wages. Rana Plaza (24 April 2013, 1,134 dead)
+is the true face of the 'civilization'."</p>
+</blockquote>
+<p>Key texts: Badruddin Umar, <em>Purba Banglar Bhasha Andolon o
+Tatkalin Rajniti</em> (3 vols, 1970–1985); <em>Sampradayikata</em>
+(1966) <span class="verify">VERIFY title and date</span>; <em>The Emergence of Bangladesh</em>, 2
+vols (Oxford University Press, Karachi, 2004–2006); Hamza Alavi, "The
+State in Post-Colonial Societies: Pakistan and Bangladesh", <em>New Left
+Review</em> I/74 (1972), pp. 59–81.</p>
+<p><strong>What a credible framework must concede or build
+in.</strong></p>
+<ol type="1">
+<li><strong>Concede</strong> that identity politics in Bengal has
+repeatedly been mobilised by elites for class ends.</li>
+<li><strong>Build in</strong> a material programme: labour rights
+(minimum wage review, freedom of association, occupational safety from
+the Accord on Fire and Building Safety model), land reform where
+feasible, and social protection. Islamic <em>zakat</em> and
+<em>waqf</em> can be framed as civilizational redistribution.</li>
+<li><strong>Build in</strong> measurable distributional targets (Gini,
+labour share, minimum wage relative to living-wage estimates) so the
+framework is accountable.</li>
+</ol>
+<h3
+id="e-hindu-buddhist-christian-and-adivasi-citizens-including-the-chittagong-hill-tracts">(e)
+Hindu, Buddhist, Christian and Adivasi citizens, including the
+Chittagong Hill Tracts</h3>
+<p><strong>Steelman.</strong></p>
+<blockquote>
+<p>"We are not guests in this land; our ancestors built Paharpur and
+Mahasthangarh, wrote the Charyapada and composed 'Amar Sonar Bangla'.
+The Hindu share of the population fell from about 22% (1951) to about 8%
+(2022 census: 7.95%) <span class="tag tag-fact">FACT, BBS</span>. The Enemy Property Act (1965),
+continued as the Vested Property Act, transferred huge amounts of Hindu
+land (Abul Barkat's research estimated millions of acres and households
+affected <span class="verify">VERIFY figures</span>). Every time politics turns religious, temples
+burn: 1990, 1992 (after Babri), 2001 post-election violence, 2012 Ramu
+Buddhist temples, 2021 Durga Puja attacks, August 2024. In the
+Chittagong Hill Tracts, state-sponsored settlement of Bengalis
+(1979–85), decades of militarisation, and the incomplete implementation
+of the 1997 Peace Accord (land commission still largely ineffective) are
+the reality. Our 1972 MP, M. N. Larma, warned that we are not Bengalis;
+the 2011 Constitution still calls the nation 'Bangalee' and calls us
+'tribes, minor races, ethnic sects and communities' (Art. 23A). A
+'Bangla Muslim' civilization is a civilization in which we are by
+definition not full members."</p>
+</blockquote>
+<p>Key texts: CHT Peace Accord (2 Dec 1997); Chittagong Hill Tracts
+Commission reports; Amena Mohsin, <em>The Politics of Nationalism: The
+Case of the Chittagong Hill Tracts, Bangladesh</em> (University Press
+Limited, 1997); Bangladesh Hindu Buddhist Christian Unity Council
+reports <span class="verify">VERIFY specific reports</span>; Abul Barkat et al., <em>Deprivation
+of Hindu Minority in Bangladesh: Living with Vested Property</em>
+(Pathak Shamabesh, 2008) <span class="verify">VERIFY title</span>.</p>
+<p><strong>What a credible framework must concede or build
+in.</strong></p>
+<ol type="1">
+<li><strong>Concede</strong> the civilization of the delta is plural in
+<em>origin</em>, not only in present population; Buddhist, Hindu and
+Adivasi layers are constitutive, not tolerated additions.</li>
+<li><strong>Rename if necessary.</strong> A name that excludes ("Bangla
+<em>Muslim</em>") may need to become "Bengal-delta civilization" or
+"Bangladeshi civilization, shaped decisively by Islam".</li>
+<li><strong>Build in</strong> constitutional recognition of
+Indigenous/Adivasi peoples (contested term in Bangladesh; the state has
+resisted "Indigenous"), full implementation of the CHT Accord (land
+commission, withdrawal of temporary camps), repeal or full remedy of the
+Vested Property regime (the Vested Property Return Act 2001 and its
+amendments have had partial implementation), and minority representation
+guarantees.</li>
+<li><strong>Build in</strong> a rapid-response mechanism for communal
+violence (see Phase 7).</li>
+</ol>
+<h3 id="f-international-relations-realists">(f) International-relations
+realists</h3>
+<p><strong>Steelman.</strong></p>
+<blockquote>
+<p>"States pursue power and security; 'civilization' is rhetoric that
+rationalises interest. China talks of civilizational harmony while
+building bases; Russia of the Russian world while invading; India of
+<em>vasudhaiva kutumbakam</em> while building fences. Bangladesh is a
+small-territory state surrounded on three sides by India, with China as
+its largest trading-goods supplier and the US and EU as its biggest
+export markets. Its survival depends on balance, not identity.
+Civilizational rhetoric will (i) alarm India, which sees 'Bangla Muslim'
+identity through the lens of Assam and West Bengal migration politics,
+(ii) be useless to Gulf states that care about labour supply and
+investment returns, not shared civilization, and (iii) raise
+expectations at home (e.g., about Rohingya or Palestine) that the state
+cannot meet."</p>
+</blockquote>
+<p>Key texts: Kenneth Waltz, <em>Theory of International Politics</em>
+(Addison-Wesley, 1979); John Mearsheimer, <em>The Tragedy of Great Power
+Politics</em> (W. W. Norton, 2001); Hans Morgenthau, <em>Politics Among
+Nations</em> (1948).</p>
+<p><strong>What a credible framework must concede or build
+in.</strong></p>
+<ol type="1">
+<li><strong>Concede</strong> that civilizational identity cannot
+substitute for hard capacity: economic strength, defence,
+diplomacy.</li>
+<li><strong>Build in</strong> a "no irredentism" and "non-interference"
+clause: Bangladesh makes no claim on Indian or Myanmar territory or
+populations.</li>
+<li><strong>Use</strong> identity as soft power (language, culture,
+diaspora, humanitarian leadership) while keeping alignment decisions
+interest-based.</li>
+</ol>
+<h3 id="61-summary-of-concessions">6.1 Summary of concessions</h3>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Critic</th>
+<th>Must concede</th>
+<th>Must build in</th>
+<th>Grade of critic's case</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>(a) Secular Bengali</td>
+<td>1971 rejected religion-based nationhood as sufficient</td>
+<td>Language Movement and 1971 as foundational; non-establishment of
+rights</td>
+<td><strong class="grade grade-strong">Strong</strong></td>
+</tr>
+<tr class="even">
+<td>(b) Liberal / HR</td>
+<td>Rights bind regardless of culture</td>
+<td>No-ranking rule; independent institutions first</td>
+<td><strong class="grade grade-strong">Strong</strong></td>
+</tr>
+<tr class="odd">
+<td>(c) Islamist universalist</td>
+<td>Ummah is real; nation not absolute</td>
+<td>Ummah-serving foreign policy; madrasa sector inclusion</td>
+<td><strong class="grade grade-moderate">Moderate</strong> (internally contested)</td>
+</tr>
+<tr class="even">
+<td>(d) Marxist / class</td>
+<td>Identity used by elites</td>
+<td>Labour and distributional programme with targets</td>
+<td><strong class="grade grade-moderate">Moderate–Strong</strong></td>
+</tr>
+<tr class="odd">
+<td>(e) Minorities / CHT</td>
+<td>Plural origins; documented harms</td>
+<td>Rename or redefine; CHT accord; property remedies;
+representation</td>
+<td><strong class="grade grade-strong">Strong</strong></td>
+</tr>
+<tr class="even">
+<td>(f) Realists</td>
+<td>Identity ≠ power</td>
+<td>No irredentism; interest-based alignment</td>
+<td><strong class="grade grade-strong">Strong</strong></td>
+</tr>
+</tbody>
+</table></div>
+<hr />
+<h2 id="phase-7-policy-translation"><span class="phase-no">Phase 7</span>Policy translation</h2>
+<p><strong>Framing note <span class="tag tag-norm">NORM, PT and CL</span>.</strong> Each area offers
+three options on a spectrum: <strong>Thin</strong> (civilizational
+identity as cultural-educational narrative only),
+<strong class="lvl lvl-medium">Medium</strong> (some institutional recognition, with rights
+unchanged), <strong>Thick</strong> (civilizational identity as a legal
+ordering principle). The panel's majority recommends Thin-to-Medium; IT
+(position A) argues Thick is the only honest version. Trade-offs are
+shown so the study circle can choose with eyes open.</p>
+<h3 id="71-constitution-and-citizenship">7.1 Constitution and
+citizenship</h3>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Option</th>
+<th>Content</th>
+<th>Benefits</th>
+<th>Costs / risks</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Thin</strong></td>
+<td>Preamble language recognising "the civilizational heritage of the
+Bengal delta, shaped by its Buddhist, Hindu, Islamic and Indigenous
+traditions, and decisively by Islam for the majority of its people"; no
+change to rights articles</td>
+<td>Symbolic recognition; low legal risk; includes minorities</td>
+<td>Islamists will call it empty; secularists may object to "decisively
+by Islam"</td>
+</tr>
+<tr class="even">
+<td><strong class="lvl lvl-medium">Medium</strong></td>
+<td>As above, plus retention of Art. 2A (state religion) with an
+<em>explicit</em> rider that it confers no legal privilege (as in the
+2011 text: "the State shall ensure equal status and equal right in the
+practice of" other religions); civic definition of the nation in Art. 6
+("citizens of Bangladesh shall be known as Bangladeshis", dropping
+"Bangalees as a nation" so non-Bengalis are included); constitutional
+recognition of Adivasi/Indigenous peoples</td>
+<td>Resolves the 1972 Larma grievance; keeps religious majority's
+symbolic recognition</td>
+<td>Contested whether a state religion can ever be neutral; Bengali
+nationalists oppose dropping "Bangalee"</td>
+</tr>
+<tr class="odd">
+<td><strong>Thick</strong></td>
+<td>"Islam and the Bengali language as the twin foundations of the
+nation"; shari'a as "a source" of legislation; religious qualification
+for head of state</td>
+<td>Satisfies Islamist parties</td>
+<td><span class="tag tag-interp">INTERP: CL</span> Pakistan/Egypt pattern: permanent
+litigation on what is Islamic; minority flight; international pressure;
+likely conflict with Arts. 27–28 and ICCPR</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Safeguards CL insists on for any option:</strong></p>
+<ul>
+<li>An entrenched "no-ranking" clause: no citizen's rights depend on
+religion, ethnicity, language or sex (strengthening Arts. 27–29).</li>
+<li>Citizenship by birth and descent unchanged; <strong>no NRC-type
+registers</strong> (avoid India's Assam model). The Citizenship Act 1951
+and the 2008 <em>Khalid Hussain v. Bangladesh</em> High Court judgment
+recognising the citizenship of Urdu-speaking "Bihari" camp-dwellers born
+after 1971 <span class="tag tag-fact">FACT</span> should be affirmed as precedent of inclusive
+citizenship.</li>
+<li>Supermajority plus referendum requirement for amending fundamental
+rights.</li>
+</ul>
+<h3 id="72-education-and-history-curricula">7.2 Education and history
+curricula</h3>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Option</th>
+<th>Content</th>
+<th>Trade-offs</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Thin</strong></td>
+<td>A "Delta Civilization" history spine for secondary schools: Pala,
+Sultanate, Mughal, colonial, 1947, 1952, 1971, 2024, taught through
+primary sources; comparative religions unit; Bengali Muslim literary
+heritage (Shah Muhammad Sagir, Alaol, Abdul Hakim) alongside Charyapada,
+Chandidas, Tagore, Nazrul, Jibanananda</td>
+<td>Builds depth without exclusion; demands good teachers and textbooks;
+will be attacked from both sides</td>
+</tr>
+<tr class="even">
+<td><strong class="lvl lvl-medium">Medium</strong></td>
+<td>Thin plus integration of the three streams (general, Alia madrasa,
+Qawmi madrasa) around a shared civic-civilizational core curriculum
+(Bengali, English, math, science, history, civics), with accredited
+religious content</td>
+<td>Reduces the social segregation of madrasa students; <span class="tag tag-interp">INTERP:
+DE</span> major human-capital gain if done well; Qawmi boards may
+resist state oversight</td>
+</tr>
+<tr class="odd">
+<td><strong>Thick</strong></td>
+<td>Islamic studies as the frame for all history; downgrading of
+pre-Islamic and non-Muslim contributions</td>
+<td>Alienates minorities and the secular middle class; repeats India's
+NCERT controversies in reverse; politicises textbooks with every change
+of government</td>
+</tr>
+</tbody>
+</table></div>
+<p><span class="tag tag-fact">FACT</span> Bangladesh's textbooks have been revised
+repeatedly by successive governments, especially on the 1971 narrative
+and on the declaration of independence. <span class="tag tag-norm">NORM, HB</span>
+Create an independent, multi-partisan <strong>History Curriculum
+Council</strong> with professional historians, protected tenure and a
+published evidence standard, so curricula stop changing with
+governments. <strong>Grade for the recommendation:</strong> Moderate
+(based on comparative experience of history commissions; no
+Bangladesh-specific evaluation exists).</p>
+<h3 id="73-language-and-cultural-policy">7.3 Language and cultural
+policy</h3>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Option</th>
+<th>Content</th>
+<th>Trade-offs</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Thin</strong></td>
+<td>Bengali as sole official language (Art. 3) retained; state support
+for minority mother-tongue primary education (Chakma, Marma, Garo,
+Santali, Kokborok etc., started 2017 for five languages <span class="verify">VERIFY</span>);
+English and Arabic as strategic second languages; national translation
+institute</td>
+<td>Inclusive; English improves employability; Arabic serves both
+religion and Gulf labour market</td>
+</tr>
+<tr class="even">
+<td><strong class="lvl lvl-medium">Medium</strong></td>
+<td>Thin plus a national "Delta Heritage" programme: restoration of
+Sultanate and Mughal monuments <em>and</em> Buddhist and Hindu sites
+(Paharpur, Mahasthangarh, Kantajew temple); state festival calendar
+recognising Pohela Boishakh, both Eids, Durga Puja, Buddha Purnima,
+Christmas and Adivasi festivals</td>
+<td>Builds shared heritage; some Islamist objection to state-backed
+non-Islamic festivals</td>
+</tr>
+<tr class="odd">
+<td><strong>Thick</strong></td>
+<td>State-defined "authentic" Bengali-Muslim culture; restrictions on
+"foreign" (especially Indian) cultural content; policing of syncretic
+practices (Baul, <em>mangal shobhajatra</em>)</td>
+<td><span class="tag tag-interp">INTERP: HB</span> Destroys the very synthesis it claims
+to protect; Baul and Sufi shrines have already been attacked (shrine
+attacks reported in 2024–25 <span class="verify">VERIFY</span>)</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="74-economic-statecraft">7.4 Economic statecraft</h3>
+<p><span class="tag tag-interp">INTERP: DE</span> The civilizational frame has no
+economic content of its own. Its only economic value is as a
+<em>mobilising narrative</em> for long-horizon, disciplined development,
+as Japan's "rich country, strong army" (<em>fukoku kyohei</em>), Korea's
+Park-era nationalism and Malaysia's NEP and Vision 2020 did. Without
+delivery, it becomes compensation for failure.</p>
+<p><strong>Key developmental-state literature <span class="tag tag-fact">FACT: texts</span>:</strong>
+Chalmers Johnson, <em>MITI and the Japanese Miracle</em> (Stanford
+University Press, 1982); Alice Amsden, <em>Asia's Next Giant: South
+Korea and Late Industrialization</em> (Oxford University Press, 1989);
+Robert Wade, <em>Governing the Market</em> (Princeton University Press,
+1990); Peter Evans, <em>Embedded Autonomy: States and Industrial
+Transformation</em> (Princeton University Press, 1995); Joe Studwell,
+<em>How Asia Works</em> (Profile Books, 2013); Mushtaq H. Khan on rents
+and political settlements (e.g., "Political Settlements and the
+Governance of Growth-Enhancing Institutions", SOAS working paper, 2010
+<span class="verify">VERIFY</span>).</p>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Lever</th>
+<th>Option</th>
+<th>Evidence / trade-off</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Industrial policy</strong></td>
+<td>Export discipline: support conditional on export performance
+(Amsden's "reciprocal control mechanism"); move up from RMG to technical
+textiles, light engineering, electronics assembly, pharmaceuticals
+(Bangladesh already supplies most domestic drug needs), shipbuilding,
+leather</td>
+<td><span class="tag tag-interp">INTERP: DE</span> RMG ~80%+ of goods exports is a
+concentration risk; LDC graduation (scheduled for November 2026 <span class="verify">VERIFY
+whether deferred</span>) ends some preferential market access after transition
+periods (EU EBA transition to 2029)</td>
+</tr>
+<tr class="even">
+<td><strong>Economic zones</strong></td>
+<td>Complete the BEZA programme (100 zones planned) with a few
+world-class zones rather than many weak ones; Japanese and Chinese zones
+as anchors</td>
+<td>Studwell: focus beats dispersion</td>
+</tr>
+<tr class="odd">
+<td><strong>Agriculture</strong></td>
+<td>Rice self-sufficiency achieved; next: high-value horticulture,
+aquaculture, cold chains</td>
+<td>Land fragmentation; climate exposure</td>
+</tr>
+<tr class="even">
+<td><strong>State capacity</strong></td>
+<td>Raise tax-to-GDP from ~8% (one of the world's lowest) toward
+12–15%</td>
+<td>Without revenue, no developmental state; requires confronting elite
+evasion</td>
+</tr>
+<tr class="odd">
+<td><strong>Banking</strong></td>
+<td>Clean up the banking sector: non-performing loans and politically
+connected lending</td>
+<td><span class="tag tag-fact">FACT</span> Bangladesh Bank and the interim government
+documented large-scale looting of banks, including Islamic banks
+controlled by a single conglomerate after 2017 <span class="verify">VERIFY specifics</span>; a
+merger of five troubled Islamic banks was undertaken in 2025
+<span class="verify">VERIFY</span></td>
+</tr>
+<tr class="even">
+<td><strong>Islamic finance</strong></td>
+<td>Use Islamic finance as a civilizational <em>and</em> developmental
+tool: sukuk for infrastructure (Bangladesh Bank issued its first
+government sukuk in 2020 <span class="verify">VERIFY</span>); <em>waqf</em> modernisation (cash
+waqf, waqf land registry); zakat fund with transparent governance;
+profit-and-loss sharing (<em>musharaka/mudaraba</em>) for SMEs</td>
+<td><span class="tag tag-interp">INTERP: DE</span> Malaysia shows Islamic finance can be
+world-class with strong regulation (Shariah Advisory Council at the
+central bank, Islamic Financial Services Act 2013).
+<strong>Risk:</strong> in Bangladesh, Islamic banks (about a quarter of
+deposits <span class="verify">VERIFY</span>) became channels for capture; "Islamic" labels do not
+substitute for governance</td>
+</tr>
+<tr class="odd">
+<td><strong>Human capital</strong></td>
+<td>Health and education as the civilizational project: universal
+primary care, maternal health, secondary completion, technical training;
+medical and engineering centres of excellence</td>
+<td>Highest-return investment in development economics; Bangladesh's
+social gains (life expectancy ~72–73, fertility ~2) came largely from
+NGO-state partnership (BRAC, Grameen, family planning)</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="75-foreign-policy">7.5 Foreign policy</h3>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>Arena</th>
+<th>Options</th>
+<th>Trade-offs</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Bay of Bengal</strong></td>
+<td>Position Bangladesh as the "Bay of Bengal hub": Matarbari deep-sea
+port (Japan's BIG-B initiative), Payra, Chittagong upgrade; blue economy
+after maritime boundary rulings (ITLOS vs Myanmar, 2012; PCA vs India,
+2014) <span class="tag tag-fact">FACT</span></td>
+<td>Requires managing great-power port competition (China, India, Japan,
+US)</td>
+</tr>
+<tr class="even">
+<td><strong>China–India balance</strong></td>
+<td>Hedging: China for infrastructure and trade; India for connectivity,
+water (Ganges Water Treaty 1996 expires December 2026 <span class="tag tag-fact">FACT: 30-year
+treaty signed Dec 1996</span>; Teesta unresolved), energy; Japan and the EU as
+balancers</td>
+<td><span class="tag tag-interp">INTERP: CP</span> "Civilizational" rhetoric hostile to
+India will push Delhi into security-led policy; the treaty renewal makes
+2026 a critical year. Hedging requires credibility with both</td>
+</tr>
+<tr class="odd">
+<td><strong>OIC and the Muslim world</strong></td>
+<td>Active OIC diplomacy (Bangladesh hosted the OIC Council of Foreign
+Ministers in Dhaka, May 2018 <span class="tag tag-fact">FACT</span>); Gaza and Rohingya leadership;
+Gambia's ICJ case against Myanmar (filed Nov 2019) with OIC backing as a
+model</td>
+<td>Gives the ummah concrete content (critic (c)); limited leverage;
+Gulf states prioritise labour and investment</td>
+</tr>
+<tr class="even">
+<td><strong>Rohingya</strong></td>
+<td>Over one million Rohingya refugees in Cox's Bazar <span class="tag tag-fact">FACT, UNHCR</span>;
+push for safe, voluntary, dignified return; burden-sharing; ICJ case
+support</td>
+<td><span class="tag tag-interp">INTERP: CL</span> A civilizational Muslim identity
+raises moral obligations that the state cannot fully meet; must be
+framed as human-rights duty, not only religious solidarity</td>
+</tr>
+<tr class="odd">
+<td><strong>Diaspora</strong></td>
+<td>Diaspora (~10–15 million <span class="verify">VERIFY</span>, mainly Gulf, Malaysia, UK, US,
+Italy); remittances record ~US$30 billion in FY2024–25 <span class="verify">VERIFY</span>;
+diaspora bonds; skilled-return programmes; voting rights for
+expatriates</td>
+<td><span class="tag tag-interp">INTERP: DE</span> Shift from low-skill labour export to
+skilled migration; protect migrant workers (recruitment-cost abuse is
+documented)</td>
+</tr>
+<tr class="even">
+<td><strong>"Civilizational" soft power</strong></td>
+<td>International Mother Language Day; Bengali-Muslim literature
+translation; Sufi heritage tourism; climate-adaptation leadership
+(Bangladesh as a delta-civilization at climate frontline)</td>
+<td>Climate leadership is the most credible universal message: "The
+civilization that learned to live with water"</td>
+</tr>
+</tbody>
+</table></div>
+<h3
+id="76-minority-protections-and-safeguards-against-majoritarian-drift">7.6
+Minority protections and safeguards against majoritarian drift</h3>
+<p><span class="tag tag-norm">NORM, CL, endorsed by the full panel including IT</span>
+A civilizational framework is credible only if it ships with
+<em>harder</em> minority protections than the status quo. Minimum
+package:</p>
+<ol type="1">
+<li><strong>Constitutional:</strong> entrenched no-ranking clause;
+recognition of Adivasi peoples; proportional representation or reserved
+seats mechanism for religious and ethnic minorities in Parliament and
+local government [NORM; debate: reserved seats can ghettoise].</li>
+<li><strong>Statutory:</strong> a comprehensive
+<strong>Anti-Discrimination Act</strong> (a draft was placed before
+Parliament in 2022 <span class="verify">VERIFY</span>); a <strong>Minority Protection
+Commission</strong> with investigative powers; a <strong>Vested
+Property</strong> final settlement with a time-bound restitution
+tribunal.</li>
+<li><strong>CHT:</strong> time-bound implementation roadmap for the 1997
+Accord, especially the Land Dispute Resolution Commission and devolution
+to the Regional Council and Hill District Councils.</li>
+<li><strong>Communal violence:</strong> a rapid-response protocol
+(police accountability for failure to protect; special tribunals with
+deadlines; compensation fund); systematic data collection by an
+independent body.</li>
+<li><strong>Speech:</strong> blasphemy-type offences (Penal Code s.
+295A; the Digital Security Act 2018, replaced by the Cyber Security Act
+2023, itself replaced by an ordinance in 2025 <span class="verify">VERIFY</span>) must not be used
+against minorities or dissenters; require high evidentiary thresholds
+and prosecutorial approval.</li>
+<li><strong>Monitoring:</strong> an annual <strong>Pluralism
+Index</strong> published by an independent body, scoring the Phase 2
+criterion C6.</li>
+</ol>
+<p><strong>[Dissent, IT-position A]</strong> "Item 5 will be read as
+protecting insults to the Prophet. Any party adopting it will lose
+religious voters." <strong>[Response, CL]</strong> "Then specify:
+protect religious <em>feelings</em> through civil remedies and narrowly
+drawn incitement law, not broad criminal blasphemy, which Pakistan shows
+leads to vigilante killing."</p>
+<hr />
+<h2 id="phase-8-risk-register"><span class="phase-no">Phase 8</span>Risk register</h2>
+<p>Likelihood and impact are rated <strong>Low / Medium / High</strong>
+by panel consensus; these are judgments, <strong>not</strong> forecasts
+from a model. <strong>Overall evidence grade for the register:
+Moderate</strong> (grounded in comparative cases, but
+forward-looking).</p>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>#</th>
+<th>Risk</th>
+<th>Type</th>
+<th>Likelihood</th>
+<th>Impact</th>
+<th>Early warning signs</th>
+<th>Mitigation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td><strong>Majoritarian drift</strong>: "civilizational" talk turns
+into legal or informal second-class status for Hindus, Buddhists,
+Christians and Adivasis</td>
+<td>Social / political</td>
+<td><strong class="lvl lvl-high">High</strong></td>
+<td><strong class="lvl lvl-high">High</strong></td>
+<td>Rhetoric of minorities as "Indian agents"; rise in communal attacks;
+land grabs around elections; minority emigration rising</td>
+<td>Phase 7.6 package <em>before</em> identity policy; independent
+Pluralism Index; leaders publicly visiting attacked sites; prosecutions
+within fixed time</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td><strong>Islamist capture and outbidding</strong>: more radical
+groups claim the frame and push the party toward Thick options</td>
+<td>Political</td>
+<td><strong class="lvl lvl-high">High</strong></td>
+<td><strong class="lvl lvl-high">High</strong></td>
+<td>Demands for blasphemy laws, Ahmadi exclusion, attacks on shrines and
+Baul events; party adopting harder positions before elections</td>
+<td>Clear written limits (no Maududian state); alliance with mainstream
+'ulama' and Sufi orders; Indonesia's NU/Muhammadiyah model of
+civil-society moderation</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td><strong>Polarisation and re-opening of 1971</strong>: the frame is
+read as rehabilitating 1971 collaborators and denigrating the Liberation
+War</td>
+<td>Political / social</td>
+<td><strong class="lvl lvl-high">High</strong></td>
+<td><strong class="lvl lvl-high">High</strong></td>
+<td>Fights over textbooks, monuments and national days; attacks on
+Liberation War memorials; secular-Islamist street confrontations</td>
+<td>Constitutionalise 1952 and 1971 as foundational; acknowledge
+collaborators' crimes; avoid zero-sum memory politics; independent
+History Council</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td><strong>Authoritarian personalisation</strong>: civilizational
+rhetoric used to justify a strongman and weaken courts, press and
+elections (Rachman's pattern)</td>
+<td>Political</td>
+<td><strong class="lvl lvl-medium">Medium</strong></td>
+<td><strong class="lvl lvl-high">High</strong></td>
+<td>Attacks on judiciary and Election Commission; "foreign agent" style
+laws; enforced disappearances return; cult of a leader as civilizational
+saviour</td>
+<td>Term limits; caretaker or neutral election arrangements; independent
+judiciary appointments; free press laws; frame civilization as
+<em>society's</em>, not the leader's</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td><strong>India relations crisis</strong>: Delhi interprets the frame
+as hostile Islamic nationalism; tensions over border killings, water,
+trade, "infiltration" narratives</td>
+<td>Geopolitical</td>
+<td><strong class="lvl lvl-medium">Medium–High</strong></td>
+<td><strong class="lvl lvl-high">High</strong></td>
+<td>Hostile media cycles in both countries; trade restrictions (e.g.,
+transit and land-port curbs); border incidents; stalled Ganges treaty
+renewal (expires Dec 2026)</td>
+<td>No-irredentism doctrine; separate identity rhetoric from statecraft;
+prioritise water-treaty diplomacy; Track II dialogues; protect Hindu
+minority as a matter of national honour</td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td><strong>Economic neglect</strong>: identity politics crowds out the
+hard reforms (tax, banking, export diversification, LDC graduation)</td>
+<td>Economic</td>
+<td><strong class="lvl lvl-high">High</strong></td>
+<td><strong class="lvl lvl-high">High</strong></td>
+<td>Budget shifts to symbolic projects; NPLs rise; export concentration
+persists; foreign reserves fall; IMF programme slippage</td>
+<td>Make the developmental programme the <em>core</em> of the framework;
+publish growth, export and human-development targets; independent
+central bank</td>
+</tr>
+<tr class="odd">
+<td>7</td>
+<td><strong>Western market and investor backlash</strong>: perceived
+rights backsliding triggers trade or reputational costs (EU GSP+
+conditionality, brand buyers' due diligence)</td>
+<td>Economic / geopolitical</td>
+<td><strong class="lvl lvl-medium">Medium</strong></td>
+<td><strong class="lvl lvl-high">High</strong></td>
+<td>EU monitoring missions' critical reports; ILO complaints; brand
+statements; credit-rating downgrades</td>
+<td>Human-rights and labour compliance as part of the framework; engage
+EU early on GSP+ eligibility after LDC graduation; ratify and implement
+core ILO conventions fully</td>
+</tr>
+<tr class="even">
+<td>8</td>
+<td><strong>CHT conflict renewal</strong>: Adivasi grievances and
+Bengali settler tensions escalate</td>
+<td>Social / security</td>
+<td><strong class="lvl lvl-medium">Medium</strong></td>
+<td><strong class="lvl lvl-medium">Medium–High</strong></td>
+<td>Land disputes; clashes (e.g., Khagrachari and Rangamati violence,
+September 2024 <span class="verify">VERIFY</span>); militarisation; armed group splits</td>
+<td>Implement the 1997 Accord; constitutional recognition; land
+commission functioning; development with consent</td>
+</tr>
+<tr class="odd">
+<td>9</td>
+<td><strong>Regional spillover and securitisation of identity</strong>:
+the Rohingya crisis, Myanmar civil war (Arakan Army control of most of
+Rakhine <span class="verify">VERIFY extent</span>) and transnational jihadist recruitment exploit
+Muslim-identity politics</td>
+<td>Geopolitical / security</td>
+<td><strong class="lvl lvl-medium">Medium</strong></td>
+<td><strong class="lvl lvl-high">High</strong></td>
+<td>Armed activity in camps; recruitment in camps; cross-border
+incidents; extremist propaganda adopting the frame</td>
+<td>Humanitarian and security dual track; counter-radicalisation via
+credible 'ulama'; regional diplomacy (ASEAN, China, India)</td>
+</tr>
+<tr class="even">
+<td>10</td>
+<td><strong>Intellectual hollowing</strong>: the frame becomes slogans,
+history is mythologised, critics are labelled traitors, and the study
+circle loses credibility</td>
+<td>Social / intellectual</td>
+<td><strong class="lvl lvl-medium">Medium</strong></td>
+<td><strong class="lvl lvl-medium">Medium</strong></td>
+<td>Citations replaced by slogans; refusal to engage critics; purges of
+non-conforming scholars; false historical claims in speeches</td>
+<td>Keep this dossier's rules: FACT/INTERPRETATION labels, evidence
+grades, invited critics at every session, public correction log</td>
+</tr>
+</tbody>
+</table></div>
+<hr />
+<h2 id="concluding-materials">Concluding materials</h2>
+<h3 id="1-executive-summary-one-page">(1) Executive summary (one
+page)</h3>
+<p><strong>Question.</strong> Should Bangladesh understand itself as a
+civilizational state rooted in the Bengali-Muslim synthesis of the
+Bengal delta, and what would that mean in practice?</p>
+<p><strong>1. The concept.</strong> "Civilizational state" moved from
+Lucian Pye's 1990 <em>diagnosis</em> of China's dysfunction, through
+Zhang Weiwei's 2012 <em>self-legitimation</em> of Chinese
+exceptionalism, to a <em>critique</em> (Coker, Rachman, Maçães, Acharya)
+that sees it as a tool for strongmen, exceptionalism and minority
+subordination. Acharya's "myth" critique is the test any Bangladeshi
+version must pass. <strong>(Strong)</strong></p>
+<p><strong>2. Definition.</strong> We propose seven testable criteria
+(depth, distinctiveness, living continuity, institutional translation,
+normative self-understanding, inclusive capacity, external recognition).
+Bangladesh scores roughly 8–10 of 14: it is a <strong>civilizational
+society</strong>, not yet a civilizational state.
+<strong>(Moderate)</strong></p>
+<p><strong>3. Islamic thought.</strong> Islamic tradition contains both
+objections (Maududi: nationalism is a Western idol; Hallaq: the modern
+"Islamic state" is impossible) and resources (Ibn Khaldun's
+<em>'asabiyya</em>; Iqbal's Muslim "League of Nations"; Madani's
+composite nationalism; Bennabi's civilisation-as-work; An-Na'im's civic
+reason). "Muslim civilisational nationalism" is <strong>coherent
+only</strong> if the ummah remains a moral horizon, the nation is civic,
+and "Muslim" describes the synthesis's formation rather than a
+membership test. <strong>(Moderate; live dispute)</strong></p>
+<p><strong>4. Comparisons.</strong> Civilizational rhetoric does
+<strong>not</strong> predict growth; export industrialisation, education
+and state capacity do. Declared civilizational states (China, India,
+Russia, Turkey, Iran) show a strong pattern of minority subordination
+and executive aggrandisement. The best Muslim-majority precedents are
+<strong>Indonesia's Pancasila</strong> (civic-theistic pluralism) and
+<strong>Malaysia's industrial and Islamic-finance institutions</strong>
+(but not its race-religion entitlement clauses). Pakistan is the
+warning: religion-based nationhood already failed the Bengal delta.
+<strong>(Strong on economics and Pakistan; Moderate
+elsewhere)</strong></p>
+<p><strong>5. Bengal.</strong> Bengal has real civilizational depth
+(Pala, Bengal Sultanate, Mughal agrarian frontier per Eaton, a unique
+Bengali-language Islamic literature, Sufi synthesis). The strongest
+objections: the Bengali half is shared with West Bengal, the Muslim half
+with the ummah, and 1971 rejected religion as sufficient ground for
+nationhood. Verdict: Bangladesh is the political core of a
+<strong>distinct regional Islamicate civilization of the delta</strong>,
+plural in origin. <strong>(Moderate)</strong></p>
+<p><strong>6. Critics.</strong> Every critic forces a concession: 1971
+and 1952 must be foundational; rights cannot be ranked; the ummah must
+be honoured but not made sovereign; a material programme for workers is
+required; minorities' plural origins must be built into the name and
+law; and identity cannot replace hard power.</p>
+<p><strong>7. Policy.</strong> The panel majority recommends a
+<strong>Thin-to-Medium</strong> version: preamble recognition of a
+plural delta heritage shaped decisively by Islam; a civic definition of
+the nation (resolving the Adivasi grievance); a shared curriculum across
+general and madrasa streams; a developmental-state economic programme
+with Islamic finance under strong regulation; balanced Bay-of-Bengal
+diplomacy; and <strong>stronger</strong> minority safeguards than today.
+A minority (IT-A) argues only a shari'a-grounded Thick version is
+honest.</p>
+<p><strong>8. Risks.</strong> The highest risks are majoritarian drift,
+Islamist outbidding, reopening of 1971, economic neglect and an India
+crisis. Each has early warning indicators the study circle should
+monitor publicly.</p>
+<p><strong>Bottom line.</strong> As <em>history and cultural
+self-understanding</em>, a Bengal-delta Islamicate civilizational
+identity is defensible and can strengthen national confidence. As
+<em>legal hierarchy</em>, it would repeat Pakistan's error and invite
+the abuses visible in today's declared civilizational states. The
+framework survives its critics <strong>only</strong> if it is plural in
+origin, civic in membership, developmental in substance and protective
+of minorities by design. <strong>(Overall grade: Moderate)</strong></p>
+<h3 id="2-banglaenglish-glossary-25-terms">(2) Bangla–English glossary
+(25 terms)</h3>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>#</th>
+<th>বাংলা</th>
+<th>Transliteration</th>
+<th>English</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>সভ্যতা</td>
+<td>sobbhota</td>
+<td>civilization</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>সভ্যতাভিত্তিক রাষ্ট্র</td>
+<td>sobbhotabhittik rashtro</td>
+<td>civilizational state</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>রাষ্ট্র</td>
+<td>rashtro</td>
+<td>state</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>জাতি</td>
+<td>jati</td>
+<td>nation; people; (also) caste</td>
+<td>Ambiguity matters: "jati" can mean caste</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>জাতীয়তাবাদ</td>
+<td>jatiyotabad</td>
+<td>nationalism</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td>বাঙালি জাতীয়তাবাদ</td>
+<td>Bangali jatiyotabad</td>
+<td>Bengali nationalism</td>
+<td>Language-culture based (1972)</td>
+</tr>
+<tr class="odd">
+<td>7</td>
+<td>বাংলাদেশি জাতীয়তাবাদ</td>
+<td>Bangladeshi jatiyotabad</td>
+<td>Bangladeshi nationalism</td>
+<td>Territory-citizenship based (1977)</td>
+</tr>
+<tr class="even">
+<td>8</td>
+<td>নাগরিকত্ব</td>
+<td>nagorikotto</td>
+<td>citizenship</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>9</td>
+<td>উম্মাহ</td>
+<td>ummah</td>
+<td>worldwide community of Muslims</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>10</td>
+<td>কওম</td>
+<td>qawm</td>
+<td>people, nation</td>
+<td>In Madani: territorial-political community</td>
+</tr>
+<tr class="odd">
+<td>11</td>
+<td>মিল্লাত</td>
+<td>millat</td>
+<td>religious community</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>12</td>
+<td>আসাবিয়্যাহ</td>
+<td>asabiyya</td>
+<td>group solidarity / partisanship</td>
+<td>Ibn Khaldun (neutral) vs hadith (condemned when unjust)</td>
+</tr>
+<tr class="odd">
+<td>13</td>
+<td>ধর্মনিরপেক্ষতা</td>
+<td>dhormoniropekkhota</td>
+<td>secularism</td>
+<td>Lit. "religious neutrality"</td>
+</tr>
+<tr class="even">
+<td>14</td>
+<td>রাষ্ট্রধর্ম</td>
+<td>rashtrodhormo</td>
+<td>state religion</td>
+<td>Art. 2A</td>
+</tr>
+<tr class="odd">
+<td>15</td>
+<td>সাম্প্রদায়িকতা</td>
+<td>shamprodayikota</td>
+<td>communalism</td>
+<td>South Asian term for religious sectarian politics</td>
+</tr>
+<tr class="even">
+<td>16</td>
+<td>অসাম্প্রদায়িকতা</td>
+<td>oshamprodayikota</td>
+<td>non-communalism</td>
+<td>Often preferred to "secularism" in Bangla discourse</td>
+</tr>
+<tr class="odd">
+<td>17</td>
+<td>সংখ্যালঘু</td>
+<td>shongkhaloghu</td>
+<td>minority</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>18</td>
+<td>সংখ্যাগরিষ্ঠতাবাদ</td>
+<td>shongkhagorishthotabad</td>
+<td>majoritarianism</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>19</td>
+<td>আদিবাসী</td>
+<td>adibashi</td>
+<td>Indigenous peoples</td>
+<td>State prefers "kshudro nrigoshthi" (small ethnic groups);
+contested</td>
+</tr>
+<tr class="even">
+<td>20</td>
+<td>বহুত্ববাদ</td>
+<td>bohuttobad</td>
+<td>pluralism</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>21</td>
+<td>সমন্বয় / সমন্বয়বাদ</td>
+<td>shomonnoy / shomonnoybad</td>
+<td>synthesis / syncretism</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>22</td>
+<td>পীর</td>
+<td>pir</td>
+<td>Sufi master / saint</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>23</td>
+<td>ভাষা আন্দোলন</td>
+<td>bhasha andolon</td>
+<td>Language Movement (1948–52)</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>24</td>
+<td>মুক্তিযুদ্ধ</td>
+<td>muktijuddho</td>
+<td>Liberation War (1971)</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>25</td>
+<td>উন্নয়নমূলক রাষ্ট্র</td>
+<td>unnoyonmulok rashtro</td>
+<td>developmental state</td>
+<td>Johnson, Amsden, Wade, Evans</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="3-fifteen-discussion-questions-for-the-study-circle">(3) Fifteen
+discussion questions for the study circle</h3>
+<ol type="1">
+<li>Is a "civilization" something a people <em>inherits</em> or
+something it <em>builds</em>? What follows for Bangladesh if Bennabi is
+right that civilisation is work, not heritage?</li>
+<li>Lucian Pye meant "a civilization pretending to be a state" as a
+criticism. Why did it become a compliment? Who benefits from the
+shift?</li>
+<li>Which of our seven criteria (Phase 2) is most important, and should
+"inclusive capacity" (C6) be part of the definition at all?</li>
+<li>Does Qur'an 49:13 ("peoples and tribes that you may know one
+another") support nationalism, limit it, or neither?</li>
+<li>Madani's composite nationalism was written for Muslims as a
+minority. What does it demand of Muslims as a 91% majority?</li>
+<li>Iqbal called the territorial homeland "the biggest of the new idols"
+yet helped create a Muslim homeland. Is that a contradiction or a
+strategy?</li>
+<li>If Hallaq is right that the modern state cannot be Islamic, where
+should Islamic civilization live: in the state, in society, or
+both?</li>
+<li>Eaton argues Islam spread in Bengal through forest clearing and rice
+cultivation. Does an indigenous, agrarian Islam strengthen or weaken
+today's calls for scriptural purity?</li>
+<li>Can a Bangladeshi civilizational identity claim Tagore, Jibanananda
+and the Charyapada? What is lost if it cannot?</li>
+<li>Was 1971 a rejection of religion-based nationhood, of Pakistani
+domination, or both? What evidence would settle the question?</li>
+<li>What should Bangladesh learn from Indonesia's Pancasila, and what
+should it avoid from Malaysia's Article 153 and Article 160?</li>
+<li>Has any "civilizational state" protected its minorities better than
+an ordinary constitutional democracy? If not, why should ours be
+different?</li>
+<li>How would the Chakma, Santal or Garo citizen describe the
+"civilization of the delta"? Should the framework's name change after
+listening to them?</li>
+<li>What is the economic content of civilizational nationalism, if any,
+beyond mobilisation? Design one measurable 10-year target.</li>
+<li>Which three early-warning signs in the Phase 8 risk register should
+this study circle monitor and publish each year, and how?</li>
+</ol>
+<h3 id="4-ten-primary-texts-to-read-first">(4) Ten primary texts to read
+first</h3>
+<div class="tbl"><table>
+<thead>
+<tr class="header">
+<th>#</th>
+<th>Text</th>
+<th>Why read it</th>
+<th>Edition note</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td><strong>Ibn Khaldun, <em>The Muqaddimah</em></strong> (1377), Book
+1, chs. 2–3 (on <em>'asabiyya</em>, dynasties, <em>'umran</em>)</td>
+<td>The classical Islamic sociology of solidarity and state
+formation</td>
+<td>Trans. Franz Rosenthal (Princeton, 1958); abridged ed. N. J. Dawood
+(Princeton, 1967; reissued 2005, introduction by Bruce Lawrence)</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td><strong>Rabindranath Tagore, <em>Nationalism</em></strong>
+(1917)</td>
+<td>A Bengali's warning that the "Nation" (as organised power) devours
+the soul of a people; essential for any Bengali nationalism</td>
+<td>Macmillan, 1917; many reprints</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td><strong>Muhammad Iqbal, Allahabad Presidential Address</strong> (29
+Dec 1930) and <em><strong>The Reconstruction of Religious Thought in
+Islam</strong></em>, ch. 6</td>
+<td>The charter of Muslim nationhood within a plural Muslim
+commonwealth</td>
+<td><em>Reconstruction</em>: Oxford University Press, 1934; Stanford
+University Press ed. 2013 (ed. M. Saeed Sheikh, introduction by Javed
+Majeed)</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td><strong>Husain Ahmad Madani, <em>Composite Nationalism and
+Islam</em></strong> (<em>Muttahida Qaumiyat aur Islam</em>, 1938)</td>
+<td>The strongest 'ulama' argument that Muslims can share a nation with
+non-Muslims</td>
+<td>Trans. M. A. Hussain and H. Imam (Manohar, 2005), introduction by
+Barbara Metcalf</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td><strong>Abul A'la Maududi, writings on nationalism</strong> (late
+1930s) and <em><strong>The Islamic Law and
+Constitution</strong></em></td>
+<td>The strongest Islamic objection to nationalism, in its own
+words</td>
+<td>Selections in English: <em>Nationalism and India</em> (1947)
+<span class="verify">VERIFY</span>; <em>The Islamic Law and Constitution</em>, trans. Khurshid
+Ahmad (Islamic Publications, Lahore, various eds.)</td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td><strong>The Lahore Resolution (23 March 1940)</strong> and
+<strong>the Delhi Legislators' Convention Resolution (9 April
+1946)</strong></td>
+<td>Read the plural "States" and the singular "State" side by side</td>
+<td>Text in Syed Sharifuddin Pirzada (ed.), <em>Foundations of Pakistan:
+All-India Muslim League Documents, 1906–1947</em>, vol. 2 (National
+Publishing House, Karachi, 1970) <span class="verify">VERIFY volume</span></td>
+</tr>
+<tr class="odd">
+<td>7</td>
+<td><strong>Sheikh Mujibur Rahman, <em>The Unfinished
+Memoirs</em></strong> (<em>Oshomapto Atmojiboni</em>)</td>
+<td>The formation of Bengali nationalism from inside the Muslim League
+generation</td>
+<td>University Press Limited, Dhaka, 2012 (English trans. Fakrul
+Alam)</td>
+</tr>
+<tr class="even">
+<td>8</td>
+<td><strong>Constitution of the People's Republic of
+Bangladesh</strong>: original 1972 text, the Proclamations Order of
+1977, the Eighth (1988) and Fifteenth (2011) Amendments, and the
+Constitution Reform Commission report (2025)</td>
+<td>The legal record of every competing vision</td>
+<td>Bangladesh Laws portal (bdlaws.minlaw.gov.bd); Commission report
+<span class="verify">VERIFY official publication</span></td>
+</tr>
+<tr class="odd">
+<td>9</td>
+<td><strong>Sukarno, "The Birth of Pancasila"</strong> speech (1 June
+1945)</td>
+<td>The most important Muslim-majority precedent for faith-affirming
+pluralism</td>
+<td>English translation widely reprinted, e.g., in Herbert Feith and
+Lance Castles (eds.), <em>Indonesian Political Thinking 1945–1965</em>
+(Cornell University Press, 1970)</td>
+</tr>
+<tr class="even">
+<td>10</td>
+<td><strong>Chittagong Hill Tracts Peace Accord</strong> (2 December
+1997)</td>
+<td>The test case of whether the Bangladeshi state can honour plural
+citizenship</td>
+<td>Text in Government of Bangladesh publications and CHT Commission
+resources</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Three indispensable secondary companions:</strong> Richard M.
+Eaton, <em>The Rise of Islam and the Bengal Frontier, 1204–1760</em>
+(University of California Press, 1993); Rafiuddin Ahmed, <em>The Bengal
+Muslims 1871–1906: A Quest for Identity</em> (Oxford University Press,
+1981); Amitav Acharya, "The Myth of the 'Civilization State'",
+<em>Ethics &amp; International Affairs</em> 34(2), 2020. For the
+Bangla-language reader: Ahmed Sofa, <em>Bangali Musalmaner Mon</em>
+(1981 ed.).</p>
+<hr />
+<h3 id="verification-checklist-before-public-use">Verification checklist
+before public use</h3>
+<p>Items marked <span class="verify">VERIFY</span> in this dossier should be
+checked against the original source before being quoted in public
+sessions. Priority items: (1) all statistical figures (WDI, HDR, BBS);
+(2) events after mid-2025 (constitutional reform, July Charter, February
+2026 election, LDC graduation timing); (3) exact page ranges for
+Jacques, Huntington ch. 7, Acharya and Therborn; (4) exact wording of
+Iqbal's <em>Reconstruction</em> ch. 6 and Abdul Hakim's <em>Nurnama</em>
+couplet; (5) Maududi's nationalism texts and their English editions.</p>
+<p><em>End of dossier.</em></p>
+
+  </main>
+</div>
+<footer>Prepared for discussion. Statistics are rounded and items marked VERIFY should be checked against the cited source before quotation.</footer>
+
+<script>
+(function(){
+  var links=[].slice.call(document.querySelectorAll('nav.toc a'));
+  var map={}; links.forEach(function(a){map[a.getAttribute('href').slice(1)]=a});
+  if(!('IntersectionObserver' in window)) return;
+  var io=new IntersectionObserver(function(es){
+    es.forEach(function(e){ if(e.isIntersecting){ links.forEach(function(l){l.classList.remove('on')}); var a=map[e.target.id]; if(a) a.classList.add('on'); } });
+  },{rootMargin:'0px 0px -75% 0px'});
+  document.querySelectorAll('main h2[id]').forEach(function(h){io.observe(h)});
+})();
+</script>
